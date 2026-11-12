@@ -55,8 +55,10 @@ Persian is never letter-spaced.
 ## Motion
 
 Quiet and hand-made: authored SVG lines (brace, underline) draw themselves when they
-scroll into view, content fades up once. With "reduce motion" enabled everything is
-shown in its final state.
+scroll into view, content fades up once, the cover lifts like the chef's cloche, and
+the mint page tab fills as you scroll a chapter. Images open larger in a lightbox.
+With "reduce motion" enabled everything is shown in its final state, and every page
+works without JavaScript.
 
 ## Rules that do not bend
 
@@ -69,5 +71,5 @@ shown in its final state.
 ## What is still a compromise
 
 Artwork is cropped from the PDF, so characters carry a baked background and cannot be
-animated stroke by stroke. Fonts and colors are approximations. All of it is listed in
+animated stroke by stroke. Colors are sampled from the PDF, not from source swatches. All of it is listed in
 [`docs/tech-debt.md`](docs/tech-debt.md).

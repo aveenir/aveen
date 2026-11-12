@@ -68,12 +68,16 @@ and do not add hooks to `~/.claude`. Versions: `docs/decisions/0004-project-scop
 src/styles/tokens.css   design tokens (single source)
 src/styles/global.css   reset, base typography, paper texture, horizon band
 src/i18n/               UI strings and locale helpers (ui.ts)
-src/content/            content collections (projects, illustrations) per locale
+src/content/            content collections: projects/*.yaml, illustrations.yaml ({fa,en} fields)
+src/data/               chapters, résumé (typed data, not collections)
+src/site.ts             contact details, the single place they are written
 src/components/         reusable Astro components
 src/layouts/            page shells
 src/motion/             motion helpers, one file per pattern
 src/assets/             images imported by components and content
 reference/              source material, never shipped (PDF portfolio)
+scripts/                crop-pdf.py (artwork crops), contrast audit
+.github/workflows/      deploy.yml: GitHub Pages build and publish
 docs/                   design system, architecture, content guide, ADRs, tech debt
 ```
 

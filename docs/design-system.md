@@ -65,7 +65,7 @@ Two families only. Do not add a third without an ADR.
   family by `:lang()`, so set `lang` correctly on mixed-language runs.
 - Never letter-space Persian. Persian copy uses ZWNJ, Persian digits (`localizeDigits`)
   and «» quotes.
-- All fonts are self-hosted through Fontsource. Fonts are interim (TD-004).
+- Both fonts are self-hosted from `src/assets/fonts/`; the owner confirmed both are free to redistribute. Single weight and TTF format are tracked as TD-004.
 
 ## 4. Signature elements
 

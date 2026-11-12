@@ -1,7 +1,6 @@
 # Content guide
 
-How to add or change what the site says and shows. Structure for projects and
-illustrations lands in Phase 4; this guide already fixes the rules.
+How to add or change what the site says and shows.
 
 ## Languages
 
@@ -24,14 +23,47 @@ illustrations lands in Phase 4; this guide already fixes the rules.
   add a crop, see `reference/README.md`. When originals arrive, place them under
   `src/assets/work/<project>/` and delete the matching crop.
 
-## Adding a project (from Phase 4)
+## Adding a project
 
-1. Create `src/content/projects/<slug>/fa.md` and `en.md`.
-2. Fill the frontmatter defined in `src/content.config.ts` (title, client, year,
-   category, palette, cover, images).
-3. Run `pnpm build`. Invalid or missing fields fail the build.
+One YAML file per project in `src/content/projects/<slug>.yaml`. Every text field
+holds both locales:
+
+```yaml
+category: identity          # stationery | social | identity: the chapter it appears in
+order: 4                    # position inside the chapter
+title: { fa: دقیق, en: Daghigh }
+kind: { fa: لوگوی, en: Logo }   # the chalk word of the heading
+body:
+  fa: |
+    پاراگراف اول.
+
+    پاراگراف دوم.           # paragraphs are separated by a blank line
+  en: |
+    First paragraph.
+palette: ['#F2F5EC', '#0D1B1C'] # optional, uppercase hex
+images:
+  - src: ../../assets/pdf/identity-daghigh-logos.jpg   # path relative to the YAML file
+    alt: { fa: …, en: … }
+    wide: true              # optional: spans the full row
+```
+
+Run `pnpm build`. A missing locale, a bad hex, an unknown category or a missing image
+fails the build. A new category also needs an entry in `categories`
+(`src/content.config.ts`), in `src/data/chapters.ts` and a cover in
+`src/components/WorkPage.astro`.
+
+## Adding an illustration
+
+Append an item to `src/content/illustrations.yaml` with a unique `id`, `order`,
+`surface`, `alt`, `image` (relative to `src/content/`), optional `wide`, and
+`band: night` to place it on the dark band.
+
+## Résumé and biography
+
+`src/data/resume.ts`. Persian dates are Solar Hijri as the owner wrote them; English
+uses Gregorian years (TD-014).
 
 ## Contact details
 
-Email and phone are both shown on the site (owner decision). Keep them in one place
-(`src/i18n/ui.ts` or a `site.ts` constant in Phase 5), never scattered through pages.
+Email and phone are both shown on the site (owner decision). They are written once,
+in `src/site.ts`; header, footer and contact page read them from there.

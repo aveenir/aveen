@@ -1,8 +1,7 @@
 # aveen
 
 Portfolio website of **Aveen Iranmanesh**, graphic designer and illustrator.
-Persian (default) and English. Static site built with Astro; local-first, GitHub Pages
-later.
+Persian (default) and English. Static site built with Astro, published to GitHub Pages.
 
 ## Run it locally
 
@@ -61,9 +60,13 @@ The page reloads when you save a file. Stop the server with `Ctrl+C`.
 
 ## Status
 
-Phase 0 (foundation) is done. Phase 1 (design system) is built and waiting for the
-owner's approval of the style tile at `/styleguide/`. The home page is a placeholder.
-The repository is <https://github.com/aveenir/aveen>; nothing is published yet.
+The site is complete: home, three work chapters (stationery, social media, logo and
+identity), illustrations, about, contact and 404, in Persian and English. Artwork is
+still cropped from the PDF portfolio until originals arrive (`docs/tech-debt.md`).
+
+Repository: <https://github.com/aveenir/aveen>. Pushing to `main` publishes to
+<https://aveenir.github.io/aveen/> through `.github/workflows/deploy.yml`, once
+Settings → Pages → Source is set to **GitHub Actions**.
 
 ## Third-party skills
 
