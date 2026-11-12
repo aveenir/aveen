@@ -1,74 +1,82 @@
 ---
-// Closing band of every page: the contact call from the last portfolio page.
+// Closing strip of every page: name, email, phone and the language switch.
+// Kept to one short dark row so it reads as the end of the page, not as one
+// more sage section. The contact page already lists email and phone, so the
+// footer drops them there (`withContact`).
 import LangSwitch from './LangSwitch.astro';
 import { contact } from '@/site';
-import { localePath, useTranslations, type Locale } from '@/i18n/ui';
+import { useTranslations, type Locale } from '@/i18n/ui';
 
 interface Props {
   locale: Locale;
+  withContact?: boolean;
 }
-const { locale } = Astro.props;
+const { locale, withContact = true } = Astro.props;
 const t = useTranslations(locale);
 ---
 
-<footer class="site-footer on-deep">
-  <div class="wrap grid">
-    <div>
-      <p class="cta heading">{t('contact.cta')}</p>
-      <ul class="links" role="list">
-        <li>
-          <span class="visually-hidden">{t('contact.email')}: </span>
-          <a href={`mailto:${contact.email}`} lang="en" dir="ltr">{contact.email}</a>
-        </li>
-        <li>
-          <span class="visually-hidden">{t('contact.phone')}: </span>
-          <a href={`tel:${contact.phone}`} lang="en" dir="ltr">{contact.phoneDisplay}</a>
-        </li>
-      </ul>
-    </div>
-    <div class="end">
-      <a href={localePath('contact', locale)}>{t('nav.contact')}</a>
-      <LangSwitch locale={locale} />
-    </div>
+<footer class="site-footer">
+  <div class="wrap row">
+    <p class="sign">© {t('site.title')}</p>
+    {
+      withContact && (
+        <ul class="links" role="list">
+          <li>
+            <span class="visually-hidden">{t('contact.email')}: </span>
+            <a href={`mailto:${contact.email}`} lang="en" dir="ltr">{contact.email}</a>
+          </li>
+          <li>
+            <span class="visually-hidden">{t('contact.phone')}: </span>
+            <a href={`tel:${contact.phone}`} lang="en" dir="ltr">{contact.phoneDisplay}</a>
+          </li>
+        </ul>
+      )
+    }
+    <LangSwitch locale={locale} />
   </div>
-  <p class="wrap sign">© {t('site.title')}</p>
 </footer>
 
 <style>
   .site-footer {
-    padding-block: var(--space-16) var(--space-12);
-    border-block-start: 3px solid var(--color-ink);
+    padding-block: var(--space-6);
+    background: var(--color-night);
+    color: var(--color-on-night);
+    border-block-start: 1px solid var(--color-on-night);
   }
-  .grid {
+  .row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: end;
-    gap: var(--space-8);
+    align-items: center;
+    gap: var(--space-2) var(--space-8);
   }
-  .cta {
-    margin-block-end: var(--space-4);
+  .sign {
+    margin-inline-end: auto; /* name at the start, everything else at the end */
+    font-size: var(--text-sm);
   }
-  .links a,
-  .end a:not(.lang) {
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-6);
+    order: 3; /* phones: name and language on one line, contacts below */
+    flex-basis: 100%;
+  }
+  .links a {
     display: inline-flex;
     align-items: center;
     min-block-size: var(--tap-min);
     font-family: var(--font-latin);
-    font-size: var(--text-lg);
+    font-size: var(--text-sm);
   }
-  .end {
-    display: flex;
-    align-items: center;
-    gap: var(--space-6);
+  .row > :global(.lang) {
+    color: var(--color-ink);
   }
-  .end a:not(.lang) {
-    font-family: inherit;
-  }
-  .sign {
-    margin-block-start: var(--space-12);
-    padding-inline-start: var(--space-16); /* clear the fixed page tab */
-    font-size: var(--text-xs);
-    color: var(--color-ink-soft);
+  @media (min-width: 48rem) {
+    .row {
+      padding-inline-start: var(--space-16); /* clear the fixed page tab */
+    }
+    .links {
+      order: 0;
+      flex-basis: auto;
+    }
   }
 </style>
