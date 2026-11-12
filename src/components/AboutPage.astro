@@ -1,0 +1,212 @@
+---
+// Biography (portfolio p.2) and résumé (p.3), lists grouped by orange braces.
+// TD-013: the sketcher illustration stands in for the portrait photo.
+import { Image } from 'astro:assets';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionTitle from './SectionTitle.astro';
+import Brace from './Brace.astro';
+import NextChapter from './NextChapter.astro';
+import { bio, education, experience, interests, languages, skills, software } from '@/data/resume';
+import { localizeDigits, useTranslations, type Locale } from '@/i18n/ui';
+import sketcher from '@/assets/pdf/character-sketcher.jpg';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const [hello, ...rest] = bio[locale];
+const n = (i: number) => localizeDigits(i + 1, locale);
+---
+
+<BaseLayout locale={locale} title={t('about.title')} chapter="about">
+  <section class="intro">
+    <div class="wrap intro-grid">
+      <div class="art">
+        <Image src={sketcher} alt={t('character.sketcher.alt')} widths={[376]} sizes="(min-width: 48rem) 22rem, 70vw" loading="eager" data-reveal />
+      </div>
+      <div class="bio">
+        <h1 class="heading">{t('site.title')}</h1>
+        <p class="tagline">{t('site.tagline')}</p>
+        <div class="prose">
+          <p class="hello">{hello}</p>
+          {rest.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap resume" aria-labelledby="resume-title">
+    <h2 class="visually-hidden" id="resume-title">{t('about.resume')}</h2>
+
+    <div class="group span">
+      <SectionTitle as="h3">{t('resume.experience')}</SectionTitle>
+      <div class="braced">
+        <Brace />
+        <ol role="list" class="jobs">
+          {
+            experience.map((job, i) => (
+              <li>
+                <span class="num">{n(i)}</span>
+                <span class="what">
+                  {job.role[locale]} <strong>{job.company[locale]}</strong>
+                </span>
+                <span class="leader" aria-hidden="true" />
+                <span class="when">{job.period[locale]}</span>
+                {job.books && (
+                  <ul class="books" aria-label={t('resume.books')}>
+                    {job.books.map((b) => (
+                      <li>{b[locale]}</li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+
+    <div class="group">
+      <SectionTitle as="h3">{t('resume.skills')}</SectionTitle>
+      <div class="braced">
+        <Brace />
+        <ol role="list">{skills.map((s, i) => <li><span class="num">{n(i)}</span> {s[locale]}</li>)}</ol>
+      </div>
+    </div>
+
+    <div class="group">
+      <SectionTitle as="h3">{t('resume.software')}</SectionTitle>
+      <div class="braced">
+        <Brace />
+        <ol role="list">{software.map((s, i) => <li><span class="num">{n(i)}</span> <span lang="en">{s}</span></li>)}</ol>
+      </div>
+    </div>
+
+    <div class="group">
+      <SectionTitle as="h3">{t('resume.languages')}</SectionTitle>
+      <div class="braced">
+        <Brace />
+        <ul role="list">{languages.map((l) => <li>{l[locale]}</li>)}</ul>
+      </div>
+    </div>
+
+    <div class="group">
+      <SectionTitle as="h3">{t('resume.interests')}</SectionTitle>
+      <div class="braced">
+        <Brace />
+        <ol role="list">{interests.map((s, i) => <li><span class="num">{n(i)}</span> {s[locale]}</li>)}</ol>
+      </div>
+    </div>
+
+    <div class="group">
+      <SectionTitle as="h3">{t('resume.education')}</SectionTitle>
+      <div class="braced">
+        <Brace />
+        <p>{education[locale]}</p>
+      </div>
+    </div>
+  </section>
+
+  <NextChapter locale={locale} current="about" />
+</BaseLayout>
+
+<style>
+  .intro {
+    padding-block: var(--space-8) var(--space-16);
+    background: linear-gradient(to bottom, var(--color-paper) 0 var(--space-32), var(--color-paper-deep) var(--space-32) 100%);
+  }
+  .intro-grid {
+    display: grid;
+    gap: var(--space-8);
+    align-items: start;
+  }
+  .art :global(img) {
+    inline-size: min(22rem, 70vw);
+    box-shadow: var(--shadow-paper);
+    rotate: var(--tilt);
+  }
+  .bio {
+    display: grid;
+    gap: var(--space-4);
+  }
+  .tagline {
+    font-size: var(--text-lg);
+    color: var(--color-ink-soft);
+  }
+  .hello {
+    font-size: var(--text-lg);
+  }
+  .resume {
+    display: grid;
+    gap: var(--space-12) var(--space-8);
+    padding-block: var(--space-16);
+  }
+  .group {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-4);
+  }
+  .braced {
+    display: flex;
+    align-items: stretch;
+    gap: var(--space-3);
+    inline-size: 100%;
+  }
+  .braced ol,
+  .braced ul,
+  .braced p {
+    flex: 1;
+    display: grid;
+    gap: var(--space-2);
+    align-content: center;
+  }
+  .num {
+    font-family: var(--font-latin);
+    color: var(--color-ink-soft);
+  }
+  :global(:lang(fa)) .num {
+    font-family: var(--font-fa);
+  }
+  .jobs > li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-1) var(--space-3);
+  }
+  strong {
+    font-weight: 400;
+    text-decoration: underline;
+    text-decoration-color: var(--color-chalk);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.3em;
+  }
+  .leader {
+    flex: 1;
+    min-inline-size: var(--space-8);
+    border-block-end: 2px solid currentColor;
+    opacity: 0.4;
+  }
+  .when {
+    color: var(--color-ink-soft);
+  }
+  .books {
+    flex-basis: 100%;
+    display: grid;
+    gap: var(--space-1);
+    padding-inline-start: var(--space-8);
+    list-style: disc;
+  }
+  @media (min-width: 48rem) {
+    .intro-grid {
+      grid-template-columns: auto 1fr;
+      gap: var(--space-12);
+    }
+    .resume {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .span {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

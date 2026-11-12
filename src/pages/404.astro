@@ -1,0 +1,33 @@
+---
+// One bilingual 404 (static hosts serve a single /404.html). Persian first.
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TocNav from '@/components/TocNav.astro';
+import { localePath, ui } from '@/i18n/ui';
+---
+
+<BaseLayout locale="fa" title={ui.fa['notfound.title']}>
+  <section class="wrap lost">
+    <div>
+      <h1 class="heading">{ui.fa['notfound.title']}</h1>
+      <p>{ui.fa['notfound.lead']}</p>
+      <TocNav locale="fa" />
+    </div>
+    <div lang="en" dir="ltr">
+      <h2 class="heading">{ui.en['notfound.title']}</h2>
+      <p>{ui.en['notfound.lead']}</p>
+      <p><a href={localePath('', 'en')}>{ui.en['nav.home']}</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lost {
+    display: grid;
+    gap: var(--space-16);
+    padding-block: var(--space-16);
+  }
+  .lost > div {
+    display: grid;
+    gap: var(--space-4);
+  }
+</style>
