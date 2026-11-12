@@ -1,0 +1,57 @@
+---
+import '@/styles/fonts.css';
+import '@/styles/global.css';
+import SvgDefs from '@/components/SvgDefs.astro';
+import { dir, useTranslations, type Locale } from '@/i18n/ui';
+
+interface Props {
+  locale: Locale;
+  title?: string;
+  description?: string;
+}
+
+const { locale, title, description } = Astro.props;
+const t = useTranslations(locale);
+const pageTitle = title ? `${title} · ${t('site.title')}` : `${t('site.title')} · ${t('site.tagline')}`;
+---
+
+<!doctype html>
+<html lang={locale} dir={dir[locale]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description ?? t('site.description')} />
+    <meta name="theme-color" content="#a9b4a3" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body>
+    <SvgDefs />
+    <a class="skip" href="#main">{t('nav.skip')}</a>
+    <main id="main">
+      <slot />
+    </main>
+    <script>
+      import { observeInView } from '@/motion/in-view';
+      observeInView();
+    </script>
+  </body>
+</html>
+
+<style>
+  .skip {
+    position: absolute;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+    z-index: var(--z-tab);
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-label);
+    color: var(--color-ink);
+    translate: 0 -200%;
+  }
+  .skip:focus {
+    translate: 0 0;
+  }
+</style>
