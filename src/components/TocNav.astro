@@ -2,34 +2,27 @@
 // Primary navigation styled as the typewriter table of contents (portfolio p.4):
 // label, dot leader, number, grouped by an orange brace.
 import Brace from './Brace.astro';
-import { localePath, localizeDigits, useTranslations, type Locale, type UIKey } from '@/i18n/ui';
+import { chapters, type Chapter } from '@/data/chapters';
+import { chapterNumber, localePath, useTranslations, type Locale } from '@/i18n/ui';
 
 interface Props {
   locale: Locale;
+  current?: Chapter['id'];
 }
-const { locale } = Astro.props;
+const { locale, current } = Astro.props;
 const t = useTranslations(locale);
-
-const items: { key: UIKey; path: string }[] = [
-  { key: 'nav.stationery', path: 'work/stationery' },
-  { key: 'nav.social', path: 'work/social' },
-  { key: 'nav.identity', path: 'work/identity' },
-  { key: 'nav.illustrations', path: 'illustrations' },
-  { key: 'nav.about', path: 'about' },
-  { key: 'nav.contact', path: 'contact' },
-];
 ---
 
 <nav class="toc" aria-label={t('nav.label')} data-inview>
   <Brace />
   <ol role="list">
     {
-      items.map((item, i) => (
+      chapters.map((c, i) => (
         <li>
-          <a href={localePath(item.path, locale)}>
-            <span class="label typewriter">{t(item.key)}</span>
+          <a href={localePath(c.path, locale)} aria-current={c.id === current ? 'page' : undefined}>
+            <span class="label typewriter">{t(c.label)}</span>
             <span class="leader" aria-hidden="true" />
-            <span class="num typewriter">{localizeDigits(String(i + 1).padStart(2, '0'), locale)}</span>
+            <span class="num typewriter">{chapterNumber(i + 1, locale)}</span>
           </a>
         </li>
       ))
@@ -79,7 +72,8 @@ const items: { key: UIKey; path: string }[] = [
     translate: calc(-1 * var(--space-2)) 0;
   }
   a:hover .leader,
-  a:focus-visible .leader {
+  a:focus-visible .leader,
+  a[aria-current='page'] .leader {
     border-color: var(--color-accent);
     opacity: 1;
   }

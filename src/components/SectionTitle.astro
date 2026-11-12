@@ -1,16 +1,23 @@
 ---
 // Section heading with the chalk underline used on every portfolio page.
-// `accent` = the trailing word set in chalk, e.g. "Daghigh" + "Logo".
+// `accent` = the chalk word, e.g. "Daghigh" + "Logo". In Persian the descriptor
+// comes first («لوگوی دقیق»), so pass `accentFirst`.
 interface Props {
   as?: 'h1' | 'h2' | 'h3';
   accent?: string;
+  accentFirst?: boolean;
   lang?: 'fa' | 'en';
+  id?: string;
 }
-const { as: Tag = 'h2', accent, lang } = Astro.props;
+const { as: Tag = 'h2', accent, accentFirst = false, lang, id } = Astro.props;
 ---
 
-<Tag class="section-title heading" lang={lang} data-inview>
-  <span class="text"><slot />{accent && <span class="accent"> {accent}</span>}</span>
+<Tag class="section-title heading" lang={lang} id={id} data-inview>
+  <span class="text"
+    >{accent && accentFirst && <span class="accent">{accent} </span>}<slot />{
+      accent && !accentFirst && <span class="accent"> {accent}</span>
+    }</span
+  >
   <svg class="rule" viewBox="0 0 200 8" preserveAspectRatio="none" aria-hidden="true" focusable="false">
     <path data-draw pathLength="1" d="M2 4 C40 2.5 90 5.5 130 3.5 S180 4.5 198 4"></path>
   </svg>

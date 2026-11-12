@@ -1,0 +1,54 @@
+---
+// One shared <dialog> for enlarged artwork. Opened by src/motion/lightbox.ts.
+import { useTranslations, type Locale } from '@/i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+const t = useTranslations(Astro.props.locale);
+---
+
+<dialog class="lightbox" aria-label={t('gallery.open')}>
+  <form method="dialog">
+    <button class="close typewriter" type="submit">{t('gallery.close')}</button>
+  </form>
+  <!-- src is filled at runtime with an astro:assets-optimized URL taken from the clicked link -->
+  <img alt="" decoding="async" />
+</dialog>
+
+<style>
+  .lightbox {
+    inline-size: min(96vw, 110rem);
+    max-inline-size: none;
+    max-block-size: 94dvh;
+    padding: var(--space-12) var(--space-4) var(--space-4);
+    border: 0;
+    background: var(--color-night);
+    color: var(--color-on-night);
+    border-radius: var(--radius-paper);
+  }
+  .lightbox::backdrop {
+    background: rgb(15 17 16 / 0.82);
+  }
+  img {
+    margin-inline: auto;
+    max-block-size: calc(94dvh - var(--space-16));
+    inline-size: auto;
+    object-fit: contain;
+  }
+  form {
+    position: absolute;
+    inset-block-start: var(--space-2);
+    inset-inline-end: var(--space-2);
+  }
+  .close {
+    min-block-size: var(--tap-min);
+    padding-inline: var(--space-4);
+    border: 2px solid currentColor;
+    border-radius: var(--radius-paper);
+    background: transparent;
+    color: inherit;
+    font-size: var(--text-sm);
+    cursor: pointer;
+  }
+</style>

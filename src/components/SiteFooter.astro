@@ -1,0 +1,74 @@
+---
+// Closing band of every page: the contact call from the last portfolio page.
+import LangSwitch from './LangSwitch.astro';
+import { contact } from '@/site';
+import { localePath, useTranslations, type Locale } from '@/i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<footer class="site-footer on-deep">
+  <div class="wrap grid">
+    <div>
+      <p class="cta heading">{t('contact.cta')}</p>
+      <ul class="links" role="list">
+        <li>
+          <span class="visually-hidden">{t('contact.email')}: </span>
+          <a href={`mailto:${contact.email}`} lang="en" dir="ltr">{contact.email}</a>
+        </li>
+        <li>
+          <span class="visually-hidden">{t('contact.phone')}: </span>
+          <a href={`tel:${contact.phone}`} lang="en" dir="ltr">{contact.phoneDisplay}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="end">
+      <a href={localePath('contact', locale)}>{t('nav.contact')}</a>
+      <LangSwitch locale={locale} />
+    </div>
+  </div>
+  <p class="wrap sign">© {t('site.title')}</p>
+</footer>
+
+<style>
+  .site-footer {
+    padding-block: var(--space-16) var(--space-12);
+    border-block-start: 3px solid var(--color-ink);
+  }
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: end;
+    gap: var(--space-8);
+  }
+  .cta {
+    margin-block-end: var(--space-4);
+  }
+  .links a,
+  .end a:not(.lang) {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--tap-min);
+    font-family: var(--font-latin);
+    font-size: var(--text-lg);
+  }
+  .end {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  .end a:not(.lang) {
+    font-family: inherit;
+  }
+  .sign {
+    margin-block-start: var(--space-12);
+    padding-inline-start: var(--space-16); /* clear the fixed page tab */
+    font-size: var(--text-xs);
+    color: var(--color-ink-soft);
+  }
+</style>

@@ -30,6 +30,7 @@
   --color-focus: var(--ink-900);
   --color-night: var(--night-900);
   --color-on-night: var(--mint-200);
+  --color-rule: rgb(37 40 34 / 0.25); /* dashed dividers between projects */
 
   /* ── Typography ────────────────────────────────────────────────── */
   /* The PDF's own fonts (src/styles/fonts.css). Each script falls through to the

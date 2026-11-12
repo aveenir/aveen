@@ -1,0 +1,162 @@
+---
+// Top of every page: name (home link), chapter links, language switch.
+// Wide screens: inline links. Narrow screens: a <details> disclosure holding the
+// typewriter TOC, so the menu works without JavaScript.
+import LangSwitch from './LangSwitch.astro';
+import TocNav from './TocNav.astro';
+import { chapters, type Chapter } from '@/data/chapters';
+import { localePath, useTranslations, type Locale } from '@/i18n/ui';
+
+interface Props {
+  locale: Locale;
+  current?: Chapter['id'];
+}
+const { locale, current } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<header class="site-header" id="top">
+  <div class="wrap bar">
+    <a class="brand" href={localePath('', locale)}>
+      <span class="name">{t('site.title')}</span>
+      <span class="role">{t('site.tagline')}</span>
+    </a>
+
+    <nav class="inline-nav" aria-label={t('nav.main')}>
+      <ul role="list">
+        {
+          chapters.map((c) => (
+            <li>
+              <a href={localePath(c.path, locale)} aria-current={c.id === current ? 'page' : undefined}>
+                {t(c.short)}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="tools">
+      <LangSwitch locale={locale} />
+      <details class="menu">
+        <summary class="typewriter">
+          <span>{t('nav.menu')}</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 7h16M4 12h16M4 17h10"></path>
+          </svg>
+        </summary>
+        <div class="panel">
+          <TocNav locale={locale} current={current} />
+        </div>
+      </details>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: relative;
+    z-index: var(--z-nav);
+    padding-block: var(--space-4);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+  .brand {
+    display: grid;
+    min-block-size: var(--tap-min);
+    align-content: center;
+    text-decoration: none;
+    line-height: 1.2;
+  }
+  .name {
+    font-family: var(--font-display-latin);
+    font-size: var(--text-lg);
+  }
+  :global(:lang(fa)) .name {
+    font-family: var(--font-display-fa);
+  }
+  .role {
+    display: none;
+    font-size: var(--text-xs);
+    color: var(--color-ink-soft);
+  }
+  @media (min-width: 30rem) {
+    .role {
+      display: block;
+    }
+  }
+  .inline-nav {
+    display: none;
+  }
+  .inline-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-4);
+  }
+  .inline-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--tap-min);
+    font-size: var(--text-sm);
+    text-decoration-color: transparent;
+  }
+  .inline-nav a:hover,
+  .inline-nav a[aria-current='page'] {
+    text-decoration-color: var(--color-accent);
+  }
+  .tools {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  summary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-block-size: var(--tap-min);
+    min-inline-size: var(--tap-min);
+    padding-inline: var(--space-3);
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-paper);
+    cursor: pointer;
+    list-style: none;
+    font-size: var(--text-sm);
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary svg {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+  }
+  summary path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+  .menu[open] summary {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  .panel {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-start: 100%;
+    padding: var(--space-6) var(--page-gutter) var(--space-8);
+    background: var(--color-paper-raised);
+    box-shadow: var(--shadow-paper);
+  }
+  @media (min-width: 64rem) {
+    .inline-nav {
+      display: block;
+    }
+    .menu {
+      display: none;
+    }
+  }
+</style>

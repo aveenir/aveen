@@ -2,17 +2,29 @@
 import '@/styles/fonts.css';
 import '@/styles/global.css';
 import SvgDefs from '@/components/SvgDefs.astro';
-import { dir, useTranslations, type Locale } from '@/i18n/ui';
+import SiteHeader from '@/components/SiteHeader.astro';
+import SiteFooter from '@/components/SiteFooter.astro';
+import PageTab from '@/components/PageTab.astro';
+import Lightbox from '@/components/Lightbox.astro';
+import { chapterIndex, type Chapter } from '@/data/chapters';
+import { dir, locales, localePath, routeOf, useTranslations, type Locale } from '@/i18n/ui';
 
 interface Props {
   locale: Locale;
   title?: string;
   description?: string;
+  /** Current chapter: highlights navigation and sets the page-tab number. */
+  chapter?: Chapter['id'];
+  /** Internal pages (style tile) stay out of search results and lose the site chrome. */
+  internal?: boolean;
 }
 
-const { locale, title, description } = Astro.props;
+const { locale, title, description, chapter, internal = false } = Astro.props;
 const t = useTranslations(locale);
 const pageTitle = title ? `${title} · ${t('site.title')}` : `${t('site.title')} · ${t('site.tagline')}`;
+const route = routeOf(Astro.url.pathname);
+const canonical = new URL(localePath(route, locale), Astro.site);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <!doctype html>
@@ -23,6 +35,25 @@ const pageTitle = title ? `${title} · ${t('site.title')}` : `${t('site.title')}
     <title>{pageTitle}</title>
     <meta name="description" content={description ?? t('site.description')} />
     <meta name="theme-color" content="#a9b4a3" />
+    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+    {
+      internal ? (
+        <meta name="robots" content="noindex" />
+      ) : (
+        <>
+          <link rel="canonical" href={canonical} />
+          {locales.map((l) => (
+            <link rel="alternate" hreflang={l} href={new URL(localePath(route, l), Astro.site)} />
+          ))}
+          <link rel="alternate" hreflang="x-default" href={new URL(localePath(route, 'fa'), Astro.site)} />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content={pageTitle} />
+          <meta property="og:description" content={description ?? t('site.description')} />
+          <meta property="og:url" content={canonical} />
+          <meta property="og:locale" content={locale === 'fa' ? 'fa_IR' : 'en_US'} />
+        </>
+      )
+    }
     <script is:inline>
       document.documentElement.classList.add('js');
     </script>
@@ -30,12 +61,24 @@ const pageTitle = title ? `${title} · ${t('site.title')}` : `${t('site.title')}
   <body>
     <SvgDefs />
     <a class="skip" href="#main">{t('nav.skip')}</a>
+    {!internal && <SiteHeader locale={locale} current={chapter} />}
     <main id="main">
       <slot />
     </main>
+    {
+      !internal && (
+        <>
+          <SiteFooter locale={locale} />
+          {chapter && <PageTab locale={locale} number={chapterIndex(chapter)} />}
+          <Lightbox locale={locale} />
+        </>
+      )
+    }
     <script>
       import { observeInView } from '@/motion/in-view';
+      import { initLightbox } from '@/motion/lightbox';
       observeInView();
+      initLightbox();
     </script>
   </body>
 </html>

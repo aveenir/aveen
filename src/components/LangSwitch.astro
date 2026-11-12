@@ -1,0 +1,36 @@
+---
+// Link to the same page in the other locale.
+import { localePath, routeOf, useTranslations, type Locale } from '@/i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const other: Locale = locale === 'fa' ? 'en' : 'fa';
+const href = localePath(routeOf(Astro.url.pathname), other);
+---
+
+<a class="lang typewriter" href={href} lang={other} hreflang={other} aria-label={t('lang.switch.label')}
+  >{t('lang.switch')}</a
+>
+
+<style>
+  .lang {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--tap-min);
+    padding-inline: var(--space-3);
+    background: var(--color-label);
+    border-radius: var(--radius-paper);
+    box-shadow: var(--shadow-paper);
+    font-size: var(--text-sm);
+    text-decoration: none;
+    rotate: var(--tilt);
+    transition: rotate var(--dur-fast) var(--ease-out);
+  }
+  .lang:hover,
+  .lang:focus-visible {
+    rotate: 0deg;
+  }
+</style>
