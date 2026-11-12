@@ -1,0 +1,146 @@
+---
+// Personal illustrations on products (portfolio p.17–25): large images, few
+// words. Pieces marked `band: night` sit on the dark band like p.22.
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ChapterHero from './ChapterHero.astro';
+import Zoomable from './Zoomable.astro';
+import NextChapter from './NextChapter.astro';
+import { chapterIndex } from '@/data/chapters';
+import { useTranslations, type Locale } from '@/i18n/ui';
+import illustrator from '@/assets/pdf/character-illustrator.jpg';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const items = (await getCollection('illustrations')).sort((a, b) => a.data.order - b.data.order);
+const paper = items.filter((i) => i.data.band === 'paper');
+const night = items.filter((i) => i.data.band === 'night');
+---
+
+<BaseLayout
+  locale={locale}
+  title={t('nav.illustrations')}
+  description={t('chapter.illustrations.lead')}
+  chapter="illustrations"
+>
+  <ChapterHero
+    locale={locale}
+    number={chapterIndex('illustrations')}
+    title={t('nav.illustrations')}
+    lead={t('chapter.illustrations.lead')}
+    image={illustrator}
+    alt={t('character.illustrator.alt')}
+    horizon={0.552}
+  />
+
+  <section class="wrap gallery" aria-label={t('nav.illustrations')}>
+    <ul role="list">
+      {
+        paper.slice(0, 5).map((item) => (
+          <li class:list={{ wide: item.data.wide }} data-reveal>
+            <figure>
+              <Zoomable
+                src={item.data.image}
+                alt={item.data.alt[locale]}
+                locale={locale}
+                sizes={item.data.wide ? '(min-width: 78rem) 74rem, 94vw' : '(min-width: 48rem) 45vw, 94vw'}
+              />
+              <figcaption class="typewriter">{item.data.surface[locale]}</figcaption>
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  {
+    night.length > 0 && (
+      <section class="night" aria-label={night.map((i) => i.data.surface[locale]).join('، ')}>
+        <div class="wrap">
+          {night.map((item) => (
+            <figure data-reveal>
+              <Zoomable src={item.data.image} alt={item.data.alt[locale]} locale={locale} sizes="(min-width: 78rem) 74rem, 94vw" />
+              <figcaption class="typewriter">{item.data.surface[locale]}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="wrap gallery" aria-label={t('nav.illustrations')}>
+    <ul role="list">
+      {
+        paper.slice(5).map((item) => (
+          <li class:list={{ wide: item.data.wide }} data-reveal>
+            <figure>
+              <Zoomable
+                src={item.data.image}
+                alt={item.data.alt[locale]}
+                locale={locale}
+                sizes={item.data.wide ? '(min-width: 78rem) 74rem, 94vw' : '(min-width: 48rem) 30vw, 94vw'}
+              />
+              <figcaption class="typewriter">{item.data.surface[locale]}</figcaption>
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <NextChapter locale={locale} current="illustrations" />
+</BaseLayout>
+
+<style>
+  .gallery {
+    padding-block: var(--space-16);
+  }
+  .gallery ul {
+    display: grid;
+    gap: var(--space-12) var(--space-6);
+    align-items: center;
+  }
+  figure {
+    display: grid;
+    gap: var(--space-3);
+  }
+  /* Portrait pieces must not tower over their row neighbours. */
+  .gallery :global(img) {
+    max-block-size: 78dvh;
+    inline-size: auto;
+    max-inline-size: 100%;
+    margin-inline: auto;
+  }
+  figcaption {
+    font-size: var(--text-sm);
+    color: var(--color-ink-soft);
+  }
+  .night {
+    padding-block: var(--space-16);
+    background: var(--color-night);
+    color: var(--color-on-night);
+  }
+  .night figcaption {
+    color: var(--color-on-night);
+  }
+  .night .wrap {
+    display: grid;
+    gap: var(--space-12);
+  }
+  @media (min-width: 48rem) {
+    .gallery ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .gallery li.wide {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (min-width: 64rem) {
+    .gallery + .night + .gallery ul {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
