@@ -1,0 +1,18 @@
+/* The two fonts used in the PDF portfolio, supplied by the owner (TD-004).
+   Each has a single Regular weight; never request bold (no faux bold). */
+@font-face {
+  font-family: 'A Rooznameh';
+  src: url('../assets/fonts/a-rooznameh.ttf') format('truetype');
+  size-adjust: 112%; /* small on the em: brings Persian up to the Latin optical size */
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Radio Newsman';
+  src: url('../assets/fonts/radio-newsman.ttf') format('truetype');
+  size-adjust: 86%; /* wide and heavy: brought down to sit next to Persian */
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
