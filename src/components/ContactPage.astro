@@ -1,5 +1,6 @@
 ---
-// Closing page (portfolio p.26): handshake with a sprout, email and phone.
+// Closing page (portfolio p.26): handshake with a sprout beside email and phone.
+// The crop leaves out the page's lettering, so each detail appears once.
 import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { contact } from '@/site';
@@ -15,28 +16,30 @@ const t = useTranslations(locale);
 
 <BaseLayout locale={locale} title={t('contact.title')} description={t('contact.lead')} chapter="contact">
   <section class="contact">
-    <Image
-      class="art"
-      src={handshake}
-      alt={t('contact.handshake.alt')}
-      widths={[640, 960, 1440, 1920]}
-      sizes="100vw"
-      loading="eager"
-      fetchpriority="high"
-    />
-    <div class="wrap card">
-      <h1 class="heading">{t('contact.cta')}</h1>
-      <p class="lead">{t('contact.lead')}</p>
-      <dl>
-        <div>
-          <dt class="typewriter">{t('contact.email')}</dt>
-          <dd><a href={`mailto:${contact.email}`} lang="en" dir="ltr">{contact.email}</a></dd>
-        </div>
-        <div>
-          <dt class="typewriter">{t('contact.phone')}</dt>
-          <dd><a href={`tel:${contact.phone}`} lang="en" dir="ltr">{contact.phoneDisplay}</a></dd>
-        </div>
-      </dl>
+    <div class="wrap grid">
+      <Image
+        class="art"
+        src={handshake}
+        alt={t('contact.handshake.alt')}
+        widths={[640, 960, 1320]}
+        sizes="(min-width: 64rem) 50vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="card">
+        <h1 class="heading">{t('contact.cta')}</h1>
+        <p class="lead">{t('contact.lead')}</p>
+        <dl>
+          <div>
+            <dt class="typewriter">{t('contact.email')}</dt>
+            <dd><a href={`mailto:${contact.email}`} lang="en" dir="ltr">{contact.email}</a></dd>
+          </div>
+          <div>
+            <dt class="typewriter">{t('contact.phone')}</dt>
+            <dd><a href={`tel:${contact.phone}`} lang="en" dir="ltr">{contact.phoneDisplay}</a></dd>
+          </div>
+        </dl>
+      </div>
     </div>
   </section>
 </BaseLayout>
@@ -44,18 +47,28 @@ const t = useTranslations(locale);
 <style>
   .contact {
     background: var(--color-paper-deep);
-    padding-block-end: var(--space-16);
+    padding-block: var(--space-8) var(--space-16);
+  }
+  .grid {
+    display: grid;
+    gap: var(--space-8);
+    align-items: center;
   }
   .art {
-    inline-size: 100%;
-    max-block-size: 80dvh;
-    object-fit: cover;
-    object-position: 50% 30%;
+    inline-size: 100%; /* whole artwork, never cropped */
+    border-radius: var(--radius-paper);
+    box-shadow: var(--shadow-paper);
   }
   .card {
     display: grid;
+    justify-items: start;
     gap: var(--space-6);
-    padding-block-start: var(--space-8);
+  }
+  @media (min-width: 64rem) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+    }
   }
   .lead {
     max-inline-size: var(--measure);

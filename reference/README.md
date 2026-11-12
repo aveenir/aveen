@@ -29,7 +29,8 @@ python3 scripts/crop-pdf.py identity-    # only names starting with "identity-"
 To add a crop, add a line to `CROPS` and run the script. Crops made by hand before
 the script existed: `cover` (p.1), `character-detective` (4), `character-dancer` (13),
 `daghigh-logo-light`/`-dark` (14, styleguide only), `illustration-whisper-label` (23),
-`contact-handshake` (26).
+`contact-handshake` (26, right part only: the page's own heading, email, phone
+and page number are left out because the contact page sets them as text).
 
 The PDF itself is **not in git** (35 MB, and it contains the owner's portrait and
 contact details). Ask the owner for a copy and place it at
