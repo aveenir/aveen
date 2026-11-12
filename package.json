@@ -1,0 +1,25 @@
+{
+  "name": "aveen",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Portfolio website of Aveen Iranmanesh, graphic designer and illustrator.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "tokens:contrast": "node scripts/check-contrast.mjs",
+    "ui:search": "python3 .claude/skills/ui-ux-pro-max/scripts/search.py"
+  },
+  "packageManager": "pnpm@10.33.4",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.12",
+    "astro": "^7.4.11",
+    "gsap": "^3.15.1",
+    "typescript": "^5.9.3"
+  }
+}

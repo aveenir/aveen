@@ -1,0 +1,22 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+
+# Python caches created by the vendored ui-ux-pro-max search script
+__pycache__/
+*.pyc
+
+# Playwright
+test-results/
+playwright-report/
+
+# Full-resolution page renders are regenerated from the PDF (see reference/README.md)
+reference/portfolio-pdf/pages/
+
+# Source PDF: 35 MB and contains personal details. Kept out of git; ask the owner for a copy.
+reference/portfolio-pdf/*.pdf
