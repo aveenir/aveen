@@ -32,7 +32,6 @@ ERASE: dict[str, Box] = {
 CROPS: dict[str, tuple[int, Box]] = {
     # name: (page, box)
     "character-runner": (5, (520, 88, 1240, 705)),
-    "character-sketcher": (2, (688, 40, 962, 336)),
     "character-social": (7, (60, 70, 845, 672)),
     "character-illustrator": (17, (60, 20, 1262, 730)),
     "stationery-iranweblife-set": (6, (470, 10, 1385, 785)),

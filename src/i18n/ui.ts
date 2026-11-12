@@ -45,7 +45,6 @@ export const ui = {
     'character.runner.alt': 'پیکره‌ی خطی در حال دویدن با دفترچه و پاکت نامه‌ی نارنجی.',
     'character.social.alt': 'پیکره‌ی خطی چهارزانو نشسته با گوشی نارنجی و آیکون‌های شبکه‌های اجتماعی در اطرافش.',
     'character.dancer.alt': 'پیکره‌ی خطی رقصان با کفش‌های بند نارنجی که نوک قلم طراحی را بالای سر گرفته است.',
-    'character.sketcher.alt': 'پیکره‌ی خطی نشسته که در دفترش طراحی می‌کند و برگه‌های نارنجی دور سرش پرواز می‌کنند.',
     'character.detective.alt': 'پیکره‌ی خطی کارآگاه با ذره‌بین و علامت‌های سؤال گچی.',
     'character.illustrator.alt':
       'پیکره‌ی خطی با موهای بلند نارنجی که با مداد در هوا خط می‌کشد، کنار عنوان Illustrations.',
@@ -68,6 +67,7 @@ export const ui = {
       'برای همکاری، سفارش تصویرسازی یا یک گفت‌وگوی کوتاه درباره‌ی پروژه‌تان، ایمیل بزنید یا تماس بگیرید.',
     'contact.email': 'ایمیل',
     'contact.phone': 'تلفن',
+    'about.portrait.alt': 'عکس آوین ایرانمنش با شال نارنجی و خط چشم آبی.',
     'contact.handshake.alt': 'دو دست خطی با ناخن‌های نارنجی که با هم دست می‌دهند و از میانشان جوانه‌ای سبز شده است.',
     'footer.top': 'بازگشت به بالا',
     'notfound.title': 'این صفحه پیدا نشد',
@@ -110,7 +110,6 @@ export const ui = {
     'character.runner.alt': 'Line figure running with a notebook and an orange envelope.',
     'character.social.alt': 'Line figure sitting cross-legged with an orange phone, social media icons around it.',
     'character.dancer.alt': 'Line figure dancing in orange-laced shoes, holding a pen-tool nib overhead.',
-    'character.sketcher.alt': 'Seated line figure drawing in a sketchbook while orange sheets fly around its head.',
     'character.detective.alt': 'Line figure of a detective with a magnifying glass and chalk question marks.',
     'character.illustrator.alt':
       'Line figure with long orange hair drawing a line in the air with a pencil, beside the title “Illustrations”.',
@@ -132,6 +131,7 @@ export const ui = {
     'contact.lead': 'For a project, an illustration commission or a short chat about your idea, email or call.',
     'contact.email': 'Email',
     'contact.phone': 'Phone',
+    'about.portrait.alt': 'Portrait of Aveen Iranmanesh in an orange scarf and blue eyeliner.',
     'contact.handshake.alt': 'Two line-drawn hands with orange nails shaking, a sprout growing between them.',
     'footer.top': 'Back to top',
     'notfound.title': 'Page not found',

@@ -1,6 +1,5 @@
 ---
 // Biography (portfolio p.2) and résumé (p.3), lists grouped by orange braces.
-// TD-013: the sketcher illustration stands in for the portrait photo.
 import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SectionTitle from './SectionTitle.astro';
@@ -8,7 +7,7 @@ import Brace from './Brace.astro';
 import NextChapter from './NextChapter.astro';
 import { bio, education, experience, interests, languages, skills, software } from '@/data/resume';
 import { localizeDigits, useTranslations, type Locale } from '@/i18n/ui';
-import sketcher from '@/assets/pdf/character-sketcher.jpg';
+import portrait from '@/assets/photo/aveen-portrait.jpg';
 
 interface Props {
   locale: Locale;
@@ -23,7 +22,7 @@ const n = (i: number) => localizeDigits(i + 1, locale);
   <section class="intro">
     <div class="wrap intro-grid">
       <div class="art">
-        <Image src={sketcher} alt={t('character.sketcher.alt')} widths={[376]} sizes="(min-width: 48rem) 22rem, 70vw" loading="eager" data-reveal />
+        <Image src={portrait} alt={t('about.portrait.alt')} widths={[376, 640]} sizes="(min-width: 48rem) 22rem, 70vw" loading="eager" data-reveal />
       </div>
       <div class="bio">
         <h1 class="heading">{t('site.title')}</h1>

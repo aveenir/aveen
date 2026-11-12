@@ -58,6 +58,7 @@ Data that is not a collection lives in TypeScript:
 src/site.ts            contact details (email, phone), the only place they are written
 src/data/chapters.ts   chapter order, routes and labels (drives TOC, page tab, "next chapter")
 src/data/resume.ts     biography and résumé for the About page
+src/assets/photo/      the portrait on the About page (published with the owner's consent)
 ```
 
 Routes: `/work/<category>/` (one page per category, generated from `categories`),
