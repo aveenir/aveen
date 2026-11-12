@@ -66,7 +66,9 @@ const teaser = await Promise.all(['night-hoodies', 'mugs', 'tote-pool'].map((id)
         work.map((c) => (
           <li data-reveal>
             <a href={localePath(`work/${c.id}`, locale)}>
-              <Image src={c.image} alt={t(c.alt)} widths={[400, 640]} sizes="(min-width: 64rem) 24rem, 90vw" />
+              <span class="frame">
+                <Image src={c.image} alt={t(c.alt)} widths={[400, 640]} sizes="(min-width: 64rem) 24rem, 90vw" />
+              </span>
               <span class="num typewriter">{chapterNumber(chapterIndex(c.id), locale)}</span>
               <span class="title heading">{t(c.label)}</span>
               <span class="text">{t(c.lead)}</span>
@@ -110,9 +112,7 @@ const teaser = await Promise.all(['night-hoodies', 'mugs', 'tote-pool'].map((id)
     background: var(--color-paper-deep);
   }
   .cover {
-    inline-size: 100%;
-    max-block-size: 90dvh;
-    object-fit: cover;
+    inline-size: 100%; /* whole cover, never cropped */
   }
   @media (prefers-reduced-motion: no-preference) {
     /* Cloche reveal: the cover opens from the horizon line outward, once. */
@@ -175,11 +175,19 @@ const teaser = await Promise.all(['night-hoodies', 'mugs', 'tote-pool'].map((id)
     gap: var(--space-2);
     text-decoration: none;
   }
+  /* Every card art has its own shape (the dancer is tall, the runner wide), so
+     each image keeps its full ratio inside a frame of equal height. */
+  .frame {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    block-size: calc(var(--space-32) * 2.5);
+  }
   .chapters :global(img) {
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    inline-size: 100%;
-    background: var(--color-paper-deep);
+    inline-size: auto;
+    block-size: auto;
+    max-inline-size: 100%;
+    max-block-size: 100%;
     border-radius: var(--radius-paper);
     box-shadow: var(--shadow-paper);
     transition: translate var(--dur-base) var(--ease-out);
