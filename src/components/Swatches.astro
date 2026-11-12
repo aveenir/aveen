@@ -1,0 +1,70 @@
+---
+// Client palette as paper chips with hex codes, like the logo pages of the
+// portfolio (p.14–16). These are client colors, shown as data, not site tokens.
+import { localizeDigits, useTranslations, type Locale } from '@/i18n/ui';
+
+interface Props {
+  colors: string[];
+  locale: Locale;
+}
+const { colors, locale } = Astro.props;
+const t = useTranslations(locale);
+
+/** Relative luminance decides whether the hex label is ink or paper on the chip. */
+function isDark(hex: string): boolean {
+  const [r, g, b] = [1, 3, 5].map((i) => {
+    const c = parseInt(hex.slice(i, i + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r! + 0.7152 * g! + 0.0722 * b! < 0.18;
+}
+---
+
+<figure class="swatches">
+  <figcaption class="typewriter">{t('work.palette')}</figcaption>
+  <ul role="list">
+    {
+      colors.map((hex, i) => (
+        <li class:list={['chip', { dark: isDark(hex) }]} style={`--chip: ${hex}`}>
+          <span class="visually-hidden">
+            {t('work.swatch')} {localizeDigits(i + 1, locale)}:{' '}
+          </span>
+          <code lang="en" dir="ltr">{hex}</code>
+        </li>
+      ))
+    }
+  </ul>
+</figure>
+
+<style>
+  .swatches {
+    display: grid;
+    gap: var(--space-3);
+  }
+  figcaption {
+    font-size: var(--text-sm);
+    color: var(--color-ink-soft);
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+  .chip {
+    display: grid;
+    place-items: center;
+    inline-size: 5.5rem;
+    aspect-ratio: 1;
+    background: var(--chip);
+    color: var(--color-ink);
+    border-radius: var(--space-2);
+    box-shadow: var(--shadow-paper);
+  }
+  .chip.dark {
+    color: var(--color-label);
+  }
+  code {
+    font-family: var(--font-latin);
+    font-size: var(--text-xs);
+  }
+</style>

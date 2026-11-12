@@ -1,0 +1,49 @@
+---
+// A work chapter (stationery, social, identity): chapter cover + every project
+// of that category, in `order`.
+import { getCollection } from 'astro:content';
+import type { ImageMetadata } from 'astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ChapterHero from './ChapterHero.astro';
+import ProjectSection from './ProjectSection.astro';
+import NextChapter from './NextChapter.astro';
+import { chapterIndex } from '@/data/chapters';
+import type { Category } from '@/content.config';
+import { useTranslations, type Locale, type UIKey } from '@/i18n/ui';
+import runner from '@/assets/pdf/character-runner.jpg';
+import social from '@/assets/pdf/character-social.jpg';
+import dancer from '@/assets/pdf/character-dancer.jpg';
+
+interface Props {
+  locale: Locale;
+  category: Category;
+}
+const { locale, category } = Astro.props;
+const t = useTranslations(locale);
+
+// Horizon values are measured on each crop (see reference/README.md).
+const covers: Record<Category, { image: ImageMetadata; alt: UIKey; display: string; horizon: number; title: UIKey; lead: UIKey }> = {
+  stationery: { image: runner, alt: 'character.runner.alt', display: 'stationery', horizon: 0.525, title: 'nav.stationery', lead: 'chapter.stationery.lead' },
+  social: { image: social, alt: 'character.social.alt', display: 'Social Media Content', horizon: 0.565, title: 'nav.social', lead: 'chapter.social.lead' },
+  identity: { image: dancer, alt: 'character.dancer.alt', display: 'Logo & Identity', horizon: 0.526, title: 'nav.identity', lead: 'chapter.identity.lead' },
+};
+const cover = covers[category];
+const projects = (await getCollection('projects', (p) => p.data.category === category)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout locale={locale} title={t(cover.title)} description={t(cover.lead)} chapter={category}>
+  <ChapterHero
+    locale={locale}
+    number={chapterIndex(category)}
+    title={t(cover.title)}
+    display={cover.display}
+    lead={t(cover.lead)}
+    image={cover.image}
+    alt={t(cover.alt)}
+    horizon={cover.horizon}
+  />
+  {projects.map((project) => <ProjectSection project={project} locale={locale} />)}
+  <NextChapter locale={locale} current={category} />
+</BaseLayout>

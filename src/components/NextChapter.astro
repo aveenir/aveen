@@ -1,0 +1,61 @@
+---
+// "Next chapter" link at the end of a chapter, in the dot-leader TOC style.
+import { chapterIndex, nextChapter, type Chapter } from '@/data/chapters';
+import { chapterNumber, localePath, useTranslations, type Locale } from '@/i18n/ui';
+
+interface Props {
+  locale: Locale;
+  current: Chapter['id'];
+}
+const { locale, current } = Astro.props;
+const t = useTranslations(locale);
+const next = nextChapter(current);
+---
+
+<nav class="wrap next" aria-label={t('chapter.next')}>
+  <a href={localePath(next.path, locale)}>
+    <span class="kicker typewriter">{t('chapter.next')}</span>
+    <span class="row">
+      <span class="label heading">{t(next.label)}</span>
+      <span class="leader" aria-hidden="true"></span>
+      <span class="num typewriter">{chapterNumber(chapterIndex(next.id), locale)}</span>
+    </span>
+  </a>
+</nav>
+
+<style>
+  .next {
+    padding-block: var(--space-12) var(--space-16);
+  }
+  a {
+    display: grid;
+    gap: var(--space-2);
+    text-decoration: none;
+  }
+  .kicker {
+    font-size: var(--text-sm);
+    color: var(--color-ink-soft);
+  }
+  .row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+  }
+  .label {
+    font-size: var(--text-xl);
+  }
+  .leader {
+    flex: 1;
+    border-block-end: 2px dotted currentColor;
+    opacity: 0.55;
+    transition: border-color var(--dur-fast) var(--ease-out);
+  }
+  a:hover .leader,
+  a:focus-visible .leader {
+    border-color: var(--color-accent);
+    opacity: 1;
+  }
+  .num {
+    font-size: var(--text-lg);
+  }
+</style>

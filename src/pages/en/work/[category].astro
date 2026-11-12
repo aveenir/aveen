@@ -1,0 +1,11 @@
+---
+import WorkPage from '@/components/WorkPage.astro';
+import { categories, type Category } from '@/content.config';
+
+export function getStaticPaths() {
+  return categories.map((category) => ({ params: { category } }));
+}
+const category = Astro.params.category as Category;
+---
+
+<WorkPage locale="en" category={category} />

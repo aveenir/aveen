@@ -1,0 +1,87 @@
+---
+// One client project inside a work chapter: title with chalk descriptor, story,
+// palette, then the artwork. Data comes from src/content/projects/<slug>.yaml.
+import type { CollectionEntry } from 'astro:content';
+import SectionTitle from './SectionTitle.astro';
+import Swatches from './Swatches.astro';
+import Zoomable from './Zoomable.astro';
+import type { Locale } from '@/i18n/ui';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  locale: Locale;
+}
+const { project, locale } = Astro.props;
+const { title, kind, body, palette, images } = project.data;
+const paragraphs = body[locale].trim().split(/\n\s*\n/);
+---
+
+<article class="project" id={project.id} aria-labelledby={`${project.id}-title`}>
+  <div class="wrap layout">
+    <div class="story">
+      <SectionTitle id={`${project.id}-title`} accent={kind[locale]} accentFirst={locale === 'fa'}>
+        {title[locale]}
+      </SectionTitle>
+      <div class="prose" data-reveal>
+        {paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+      {palette.length > 0 && <Swatches colors={palette} locale={locale} />}
+    </div>
+    <ul class="art" role="list">
+      {
+        images.map((img) => (
+          <li class:list={{ wide: img.wide || images.length === 1 }} data-reveal>
+            <Zoomable
+              src={img.src}
+              alt={img.alt[locale]}
+              locale={locale}
+              sizes={img.wide || images.length === 1 ? '(min-width: 64rem) 60vw, 94vw' : '(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 94vw'}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</article>
+
+<style>
+  .project {
+    padding-block: var(--space-16);
+  }
+  .project + :global(.project) {
+    border-block-start: 2px dashed var(--color-rule);
+  }
+  .layout {
+    display: grid;
+    gap: var(--space-8);
+  }
+  .story {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-6);
+  }
+  .art {
+    display: grid;
+    gap: var(--space-6);
+    align-items: start;
+  }
+  @media (min-width: 48rem) {
+    .art {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .art .wide {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (min-width: 64rem) {
+    .layout {
+      grid-template-columns: minmax(18rem, 26rem) minmax(0, 1fr);
+      gap: var(--space-12);
+      align-items: start;
+    }
+    .story {
+      position: sticky;
+      inset-block-start: var(--space-8);
+    }
+  }
+</style>
