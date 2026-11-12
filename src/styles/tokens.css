@@ -1,0 +1,94 @@
+/*
+ * Design tokens — the single source of visual truth.
+ * Documented in docs/design-system.md. Audited by scripts/check-contrast.mjs.
+ * Color values were sampled from the flattened PDF portfolio (TD-005).
+ */
+:root {
+  /* ── Color: primitives ─────────────────────────────────────────── */
+  --sage-300: #b1bfa8; /* raised paper: cards, apron fill */
+  --sage-400: #a9b4a3; /* paper above the horizon */
+  --sage-500: #919c8c; /* paper below the horizon */
+  --sage-700: #5b6657; /* muted line work on paper */
+  --mint-200: #d2e3c8; /* chalk: display type, rules, page tab */
+  --mint-100: #e6efe0; /* paper label (SKETCH / IDEA chips) */
+  --orange-500: #ee8d4a; /* the one accent */
+  --orange-700: #a84f12; /* accent dark enough for text on mint */
+  --ink-900: #252822; /* charcoal line and body text */
+  --ink-700: #3a3f37;
+  --night-900: #0f1110; /* dark gallery section (portfolio p.22) */
+
+  /* ── Color: semantic ───────────────────────────────────────────── */
+  --color-paper: var(--sage-400);
+  --color-paper-deep: var(--sage-500);
+  --color-paper-raised: var(--sage-300);
+  --color-label: var(--mint-100);
+  --color-chalk: var(--mint-200); /* display only, never body text on paper */
+  --color-ink: var(--ink-900);
+  --color-ink-soft: var(--ink-700);
+  --color-accent: var(--orange-500); /* decoration + interaction only */
+  --color-accent-text: var(--orange-700);
+  --color-focus: var(--ink-900);
+  --color-night: var(--night-900);
+  --color-on-night: var(--mint-200);
+
+  /* ── Typography ────────────────────────────────────────────────── */
+  /* The PDF's own fonts (src/styles/fonts.css). Each script falls through to the
+     other font for the few characters it lacks. Both have one weight only. */
+  --font-latin: 'Radio Newsman', 'A Rooznameh', 'Courier New', monospace;
+  --font-fa: 'A Rooznameh', 'Radio Newsman', serif;
+  --font-display-latin: var(--font-latin);
+  --font-display-fa: var(--font-fa);
+  --font-body: var(--font-fa); /* global.css switches family per :lang() */
+
+  --text-xs: 1rem;
+  --text-sm: 1.125rem;
+  --text-base: 1.3125rem;
+  --text-lg: 1.5rem;
+  --text-xl: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  --text-2xl: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
+  --text-display: clamp(2.75rem, 1.2rem + 7vw, 7rem);
+
+  --leading-tight: 1.1;
+  --leading-body: 1.7;
+  --tracking-typewriter: 0.04em; /* Latin display only; never on Persian */
+
+  /* ── Space (4px base) ──────────────────────────────────────────── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  --page-gutter: clamp(1rem, 4vw, 3rem);
+  --page-max: 78rem;
+  --measure: 62ch;
+
+  /* ── Shape ─────────────────────────────────────────────────────── */
+  --radius-paper: 3px; /* torn-paper chips are almost square */
+  --stroke-line: 3px; /* charcoal line weight of the character */
+  --stroke-rule: 4px; /* chalk underline under headings */
+  --shadow-paper: 0 1px 0 rgb(37 40 34 / 0.18), 0 10px 24px -12px rgb(37 40 34 / 0.45);
+  --tilt: -1.2deg; /* small hand-placed rotation for labels */
+
+  /* ── Signature: the horizon ────────────────────────────────────── */
+  --horizon: 52%; /* where light paper meets deep paper (PDF: 588/1124) */
+  --texture-opacity: 0.22;
+
+  /* ── Motion ────────────────────────────────────────────────────── */
+  --dur-fast: 160ms; /* hover, focus */
+  --dur-base: 320ms; /* reveals */
+  --dur-draw: 1100ms; /* line-drawing strokes */
+  --ease-out: cubic-bezier(0.22, 0.8, 0.3, 1);
+  --ease-draw: cubic-bezier(0.65, 0, 0.2, 1);
+
+  /* ── Layout ────────────────────────────────────────────────────── */
+  --tap-min: 44px;
+  --z-texture: 1;
+  --z-nav: 20;
+  --z-tab: 30;
+}
