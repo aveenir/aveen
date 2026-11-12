@@ -1,0 +1,36 @@
+# Images and palette: portfolio p.15 (TD-003). Body text is agent-written from the page (TD-012).
+category: identity
+order: 2
+title:
+  fa: نوربو گروپ
+  en: Norbu Group
+kind:
+  fa: لوگوی
+  en: Logo
+body:
+  fa: |
+    نشانه‌ی نوربو گروپ از دو بلوک درهم‌قفل‌شده ساخته شده که حرف‌های N و G را کنار هم می‌سازند. اسکیس‌ها بین فرم‌های توپر و حروف به‌هم‌چسبیده رفت‌وبرگشت کردند تا نشانه‌ای ساده و محکم به دست آمد.
+
+    سرمه‌ای و زیتونی دو بلوک را از هم جدا می‌کنند و روی تقویم رومیزی، ساک پارچه‌ای و نمای ساختمان هم خوانا می‌مانند.
+  en: |
+    The Norbu Group mark is two interlocking blocks that together form the letters N and G. The sketches move back and forth between solid shapes and joined letters until a simple, sturdy mark remains.
+
+    Indigo and olive keep the two blocks distinct, and the mark stays legible on a desk calendar, a tote bag and a building facade.
+palette: ['#F1F1F0', '#BBB77A', '#0D1B1C', '#2A2A65']
+images:
+  - src: ../../assets/pdf/identity-norbu-logos.jpg
+    alt:
+      fa: لوگوی نوربو گروپ روی زمینه‌ی سفید و زیتونی؛ دو بلوک سرمه‌ای و زیتونی درهم‌قفل‌شده با نوشته‌ی NORBU GROUP.
+      en: Norbu Group logo on white and on olive; interlocking indigo and olive blocks with the words NORBU GROUP.
+  - src: ../../assets/pdf/identity-norbu-sketch.jpg
+    alt:
+      fa: برگه‌ی اسکیس با برچسب SKETCH؛ طرح‌های اولیه‌ی بلوکی و حروف NG.
+      en: Sketch sheet labelled SKETCH; early block studies and NG letterforms.
+  - src: ../../assets/pdf/identity-norbu-mockups.jpg
+    alt:
+      fa: لوگوی نوربو گروپ روی ساک پارچه‌ای، تقویم رومیزی و دیوار ساختمان.
+      en: Norbu Group logo on a tote bag, a desk calendar and a building wall.
+  - src: ../../assets/pdf/identity-norbu-idea.jpg
+    alt:
+      fa: معادله‌ی ایده با برچسب IDEA؛ دو بلوک که با هم نشانه‌ی نهایی را می‌سازند.
+      en: Idea equation labelled IDEA; two blocks that combine into the final mark.

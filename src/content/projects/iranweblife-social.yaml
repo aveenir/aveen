@@ -1,0 +1,26 @@
+# Images: portfolio p.8–9 (TD-003). Body text is agent-written from the images (TD-012).
+category: social
+order: 1
+title:
+  fa: ایران وب لایف
+  en: IranWebLife
+kind:
+  fa: پست‌ها و استوری‌های
+  en: Posts and Stories
+body:
+  fa: |
+    پست‌های اینستاگرام ایران وب لایف درباره‌ی برندسازی، تبلیغات و کپی‌رایتینگ‌اند. تصویرسازی خطی، کلاژ و پالت سرمه‌ای و طلایی برند کنار هم آمده‌اند تا محتوای آموزشی خشک به نظر نرسد.
+  en: |
+    Instagram posts for IranWebLife about branding, advertising and copywriting. Line illustration, collage and the brand's navy and gold palette work together so educational content never feels dry.
+palette: []
+images:
+  - src: ../../assets/pdf/social-iranweblife-posts.jpg
+    wide: true
+    alt:
+      fa: ده پست اینستاگرام ایران وب لایف در قاب گوشی؛ تصویرسازی خطی روی زمینه‌ی سرمه‌ای و کرم با عنوان‌هایی مثل «هویت بصری چیه؟».
+      en: Ten IranWebLife Instagram posts in phone frames; line illustrations on navy and cream with headlines such as “What is visual identity?”.
+  - src: ../../assets/pdf/social-iranweblife-stories.jpg
+    wide: true
+    alt:
+      fa: چهار پست عمودی ایران وب لایف با تصویرسازی خطی سرمه‌ای روی زمینه‌ی کرم، از جمله «آرکتایپ برند دلقک».
+      en: Four portrait IranWebLife posts with navy line illustrations on cream, including one on the Jester brand archetype.

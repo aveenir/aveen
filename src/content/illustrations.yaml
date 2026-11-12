@@ -1,0 +1,98 @@
+# Personal illustrations shown on products (portfolio p.18–25). Images: TD-001.
+# Paths are relative to this file.
+- id: tshirts
+  order: 1
+  wide: true
+  image: ../assets/pdf/illustration-tshirts.jpg
+  surface: { fa: تی‌شرت‌ها, en: T-shirts }
+  alt:
+    fa: شش تی‌شرت آویزان؛ یکی سبز با پیکره‌ی قرمز و آبی و بقیه سفید با طراحی‌های خطی و هاشور مرکب سیاه.
+    en: Six hanging T-shirts; one green with a red and blue figure, the rest white with black ink line drawings and hatching.
+- id: hoodies
+  order: 2
+  image: ../assets/pdf/illustration-hoodies.jpg
+  surface: { fa: هودی‌ها, en: Hoodies }
+  alt:
+    fa: دو هودی؛ آبی با گره‌ای از خطوط رنگی و سفید با پیکره‌ای خطی که روی لبه‌ی سرمه‌ای نشسته است.
+    en: Two hoodies; a blue one with a knot of coloured lines and a white one with a line figure sitting on a navy hem.
+- id: tote-yellow
+  order: 3
+  image: ../assets/pdf/illustration-tote-yellow.jpg
+  surface: { fa: ساک پارچه‌ای, en: Tote bag }
+  alt:
+    fa: ساک پارچه‌ای زرد در دست، با پیکره‌ای نشسته از خطوط آبی، قرمز و سبز.
+    en: A yellow tote bag held by hand, with a seated figure in blue, red and green lines.
+- id: postcards
+  order: 4
+  wide: true
+  image: ../assets/pdf/illustration-postcards.jpg
+  surface: { fa: کارت‌پستال‌ها, en: Postcards }
+  alt:
+    fa: سه کارت‌پستال با طراحی مرکب سیاه از پیکره‌های درهم‌پیچیده، کنار کارت‌های خط‌دار با منظره‌ی کوه.
+    en: Three postcards with black ink drawings of curled-up figures, beside lined cards with mountain landscapes.
+- id: bags-and-shirt
+  order: 5
+  wide: true
+  image: ../assets/pdf/illustration-bags-and-shirt.jpg
+  surface: { fa: کیف، پاکت خرید و تی‌شرت, en: Pouches, gift bags and a shirt }
+  alt:
+    fa: سه کیف لوازم با طراحی سیاه‌وسفید، دو پاکت خرید با پیکره‌ی مرکبی و پیکره‌ی قرمز و آبی، و تی‌شرت قرمز با پیکره‌ی سفید روی مانکن.
+    en: Three pouches with black and white drawings, two gift bags with an ink figure and a red and blue figure, and a red shirt with a white figure on a mannequin.
+- id: night-hoodies
+  order: 6
+  wide: true
+  band: night
+  image: ../assets/pdf/illustration-night-hoodies.jpg
+  surface: { fa: هودی‌ها در شب, en: Hoodies at night }
+  alt:
+    fa: زنی از پشت با دو هودی؛ کرم با پیکره‌ی قرمز در میان خطوط سیاه، و نارنجی با پیکره‌ی خطی روی زمینه‌ی آبی.
+    en: A woman seen from behind in two hoodies; cream with a red figure inside black lines, and rust with a line figure on a blue pattern.
+- id: tote-pool
+  order: 7
+  image: ../assets/pdf/illustration-tote-pool.jpg
+  surface: { fa: ساک کنار استخر, en: Tote by the pool }
+  alt:
+    fa: ساک نارنجی روی آب استخر با پیکره‌ای درازکشیده از خطوط آبی و زرد.
+    en: An orange tote floating on pool water with a reclining figure in blue and yellow lines.
+- id: whisper-label
+  order: 8
+  image: ../assets/pdf/illustration-whisper-label.jpg
+  surface: { fa: برچسب بطری Whisper, en: Whisper bottle label }
+  alt:
+    fa: برچسب کرم بطری با نام WHISPER APRICOT 2007 و پیکره‌ای رقصان از خطوط آبی و لکه‌های قرمز.
+    en: A cream bottle label reading WHISPER APRICOT 2007 with a dancing figure in blue lines and red patches.
+- id: cushions
+  order: 9
+  image: ../assets/pdf/illustration-cushions.jpg
+  surface: { fa: کوسن‌ها, en: Cushions }
+  alt:
+    fa: دو کوسن معلق؛ یکی با پیکره‌های درهم سرمه‌ای و نارنجی و دیگری با لکه‌های آبی و خطوط قرمز.
+    en: Two floating cushions; one with tangled indigo and orange figures, the other with blue patches and red lines.
+- id: mugs
+  order: 10
+  image: ../assets/pdf/illustration-mugs.jpg
+  surface: { fa: ماگ‌ها, en: Mugs }
+  alt:
+    fa: دو ماگ قرمز روی هم با شناگری زرد که در آب سرمه‌ای شیرجه می‌زند.
+    en: Two stacked red mugs with a yellow swimmer diving into navy water.
+- id: helmet
+  order: 11
+  image: ../assets/pdf/illustration-helmet.jpg
+  surface: { fa: کلاه موتور, en: Helmet }
+  alt:
+    fa: کلاه موتور سفید با دو نفر سوار بر موتور، با هاشور قرمز، سبز و آبی.
+    en: A white helmet with two people on a scooter, hatched in red, green and blue.
+- id: clock
+  order: 12
+  image: ../assets/pdf/illustration-clock.jpg
+  surface: { fa: ساعت دیواری, en: Wall clock }
+  alt:
+    fa: ساعت دیواری سفید با طراحی خطی سیاه از پیکره‌ای که به دستش تکیه داده است.
+    en: A white wall clock with a black line drawing of a figure resting on one arm.
+- id: slippers
+  order: 13
+  image: ../assets/pdf/illustration-slippers.jpg
+  surface: { fa: دمپایی‌ها, en: Slippers }
+  alt:
+    fa: یک جفت دمپایی آبی و نارنجی با پیکره‌های شناور در موج.
+    en: A pair of blue and orange slippers with figures floating in waves.

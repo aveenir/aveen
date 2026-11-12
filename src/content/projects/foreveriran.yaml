@@ -1,0 +1,25 @@
+# Text: portfolio p.12. Images: TD-003.
+category: social
+order: 4
+title:
+  fa: فوراور ایران
+  en: ForeverIran
+kind:
+  fa: پست‌های
+  en: Posts
+body:
+  fa: |
+    فوراور ایران در حوزه‌ی سلامت، پوست و مو فعالیت می‌کند. به دلیل محدودیت در دسترسی به تصاویر باکیفیت محصولات، تصاویر جمع‌آوری، بهبود کیفیت و سه‌بعدی‌سازی شدند و به‌صورت فوتومونتاژ طراحی شدند.
+
+    محصولات کنار عناصر انسانی و پس‌زمینه‌های مرتبط قرار گرفتند تا فضایی حرفه‌ای، بهداشتی و ترغیب‌کننده برای معرفی‌شان ساخته شود.
+  en: |
+    ForeverIran works in health, skin and hair care. Good product photos were hard to come by, so I gathered images, improved their quality, rebuilt the products in 3D and composed them as photomontages.
+
+    Placing each product next to people and a matching background gives the posts a professional, clean and persuasive feel.
+palette: []
+images:
+  - src: ../../assets/pdf/social-foreveriran.jpg
+    wide: true
+    alt:
+      fa: هفت پست فوراور ایران در قاب گوشی؛ فوتومونتاژ محصولات آلوئه‌ورا در دست مدل‌ها روی زمینه‌های صورتی، سبز و قهوه‌ای.
+      en: Seven ForeverIran posts in phone frames; aloe vera products montaged into models' hands on pink, green and brown backgrounds.

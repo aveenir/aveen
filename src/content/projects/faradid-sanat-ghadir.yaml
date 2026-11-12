@@ -1,0 +1,36 @@
+# Images and palette: portfolio p.16 (TD-003). Body text is agent-written from the page (TD-012).
+category: identity
+order: 3
+title:
+  fa: فرادید صنعت غدیر
+  en: Faradid Sanat Ghadir
+kind:
+  fa: لوگوی
+  en: Logo
+body:
+  fa: |
+    نشانه‌ی فرادید صنعت غدیر یک حرف F نرم است: مربعی با گوشه‌های گرد که یک برش برگ‌مانند از آن جدا شده. اسکیس‌ها از F خطی و نیم‌دایره شروع شدند و به فرمی رسیدند که در اندازه‌ی کوچک هم خوانده می‌شود.
+
+    سبزآبی‌های ملایم و گرادیان نرم، چهره‌ای آرام و قابل‌اعتماد به برندی صنعتی می‌دهند؛ از زونکن و تابلو تا بدنه‌ی کامیون.
+  en: |
+    The Faradid Sanat Ghadir mark is a soft letter F: a rounded square with a leaf-like cut taken out of it. The sketches begin with a linear F and a half circle and end in a form that still reads at small sizes.
+
+    Gentle teals and a soft gradient give an industrial brand a calm, trustworthy face, from binders and signage to the side of a truck.
+palette: ['#F9F4F4', '#5BA39D', '#7DCBC3', '#0F1915']
+images:
+  - src: ../../assets/pdf/identity-faradid-logos.jpg
+    alt:
+      fa: لوگوی فرادید صنعت غدیر روی زمینه‌ی سفید و سبزآبی؛ حرف F گرد با برش برگ‌مانند.
+      en: Faradid Sanat Ghadir logo on white and on teal; a rounded F with a leaf-like cut.
+  - src: ../../assets/pdf/identity-faradid-sketch.jpg
+    alt:
+      fa: برگه‌ی اسکیس با برچسب SKETCH؛ طرح‌های اولیه‌ی حرف F.
+      en: Sketch sheet labelled SKETCH; early studies of the letter F.
+  - src: ../../assets/pdf/identity-faradid-mockups.jpg
+    alt:
+      fa: لوگوی فرادید صنعت غدیر روی زونکن، تابلوی شیشه‌ای، کامیون و پرچم.
+      en: Faradid Sanat Ghadir logo on binders, a glass sign, a truck and a flag.
+  - src: ../../assets/pdf/identity-faradid-idea.jpg
+    alt:
+      fa: معادله‌ی ایده با برچسب IDEA؛ مربع گرد به‌علاوه‌ی برش برگ‌مانند برابر با نشانه‌ی نهایی.
+      en: Idea equation labelled IDEA; a rounded square plus a leaf-like cut equals the final mark.

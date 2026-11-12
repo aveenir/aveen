@@ -1,0 +1,33 @@
+# Text: portfolio p.6. Images: TD-003.
+category: stationery
+order: 1
+title:
+  fa: ایران وب لایف
+  en: IranWebLife
+kind:
+  fa: اوراق اداری
+  en: Stationery
+body:
+  fa: |
+    اوراق اداری ایران وب لایف شامل فولدر، سررسید و کارت ویزیت است که بر اساس کهن‌الگوی «جست‌وجوگر» طراحی شده‌اند. در همه‌ی اجزای این مجموعه، مفهوم کشف، مسیریابی و جست‌وجوی فرصت‌های تازه هسته‌ی اصلی طراحی است.
+
+    فولدر با روایت داستان شکل‌گیری بخش‌های مختلف مجموعه و معرفی نقش هر بخش، مخاطب را به همراهی در مسیر جست‌وجو دعوت می‌کند. اسکن بارکد و ثبت اطلاعات کسب‌وکار هم تجربه‌ای تعاملی می‌سازد که نماد آغاز مسیر رشد کسب‌وکار با ایران وب لایف است.
+
+    سررسید در قالب یک داستان مصور، چالش‌ها و دغدغه‌های مخاطب برای راه‌اندازی کسب‌وکار را روایت می‌کند و کارت ویزیت با داستانی کوتاه، مخاطب را با مدیر مجموعه و هویت برند آشنا می‌کند.
+
+    در سراسر مجموعه از المان‌هایی مثل ردپا و قطعه‌های پازل برای نشان دادن مسیر شکل‌گیری ایران وب لایف و مفهوم جست‌وجو استفاده شده است؛ عناصری که هم انسجام بصری می‌سازند و هم هویت برند را روایی و ملموس به مخاطب منتقل می‌کنند.
+  en: |
+    IranWebLife's stationery is a folder, a planner and a business card, all designed around the Explorer archetype. Discovery, finding your way and searching for new opportunities sit at the core of every piece.
+
+    The folder tells the story of how each part of the agency came to be and what it does, and invites the reader to join the search. Scanning a barcode and registering a business turns it into an interactive first step: the start of growing a business with IranWebLife.
+
+    The planner is an illustrated story about the worries of starting a business, and the business card uses a short story to introduce the agency's director and the brand.
+
+    Footprints and puzzle pieces run through the whole set to show the path IranWebLife took and the idea of searching. They hold the set together visually and make the brand feel like a story you can touch.
+palette: []
+images:
+  - src: ../../assets/pdf/stationery-iranweblife-set.jpg
+    wide: true
+    alt:
+      fa: فولدر، سررسید و دو کارت ویزیت ایران وب لایف با تصویرسازی خطی سرمه‌ای و طلایی و شعار «Smile to Digital Marketing».
+      en: IranWebLife folder, planner and two business cards with navy and gold line illustrations and the line “Smile to Digital Marketing”.

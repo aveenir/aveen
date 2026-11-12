@@ -1,0 +1,36 @@
+# Images and palette: portfolio p.14 (TD-003). Body text is agent-written from the page (TD-012).
+category: identity
+order: 1
+title:
+  fa: دقیق
+  en: Daghigh
+kind:
+  fa: لوگوی
+  en: Logo
+body:
+  fa: |
+    نشانه‌ی دقیق از کنار هم گذاشتن حرف D و یک قاب هشت‌ضلعی تراش‌خورده ساخته شده است. اسکیس‌ها از ده‌ها شکل ساده شروع شدند تا به فرمی رسیدند که هم مثل یک حرف خوانده شود و هم مثل یک سنگ تراش‌خورده.
+
+    پالت کرم، طلایی و سبز تیره، حس ظرافت و دقت را روی جعبه، کیسه‌ی خرید و تابلوی فروشگاه حفظ می‌کند.
+  en: |
+    The Daghigh mark joins the letter D with a faceted octagonal frame. The sketches start from a dozen simple shapes and narrow down to a form that reads as a letter and as a cut stone at the same time.
+
+    A cream, gold and deep green palette keeps the feeling of precision and care across the box, shopping bag and shop sign.
+palette: ['#F2F5EC', '#B6A86B', '#0D1B1C']
+images:
+  - src: ../../assets/pdf/identity-daghigh-logos.jpg
+    alt:
+      fa: لوگوی دقیق در دو نسخه‌ی روشن و تیره؛ حرف D طلایی با برش هشت‌ضلعی و نوشته‌ی DAGHIGH.
+      en: Daghigh logo in light and dark versions; a gold faceted D with the word DAGHIGH.
+  - src: ../../assets/pdf/identity-daghigh-sketch.jpg
+    alt:
+      fa: برگه‌ی اسکیس با برچسب SKETCH و ده طرح اولیه برای حرف D.
+      en: Sketch sheet labelled SKETCH with ten early studies of the letter D.
+  - src: ../../assets/pdf/identity-daghigh-mockups.jpg
+    alt:
+      fa: لوگوی دقیق روی جعبه‌ی هدیه، کیسه‌ی خرید و تابلوی دیواری.
+      en: Daghigh logo on a gift box, a shopping bag and a wall sign.
+  - src: ../../assets/pdf/identity-daghigh-idea.jpg
+    alt:
+      fa: معادله‌ی ایده با برچسب IDEA؛ حرف D به‌علاوه‌ی قاب هشت‌ضلعی برابر با نشانه‌ی نهایی.
+      en: Idea equation labelled IDEA; a D plus an octagonal frame equals the final mark.

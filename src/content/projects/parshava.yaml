@@ -1,0 +1,25 @@
+# Text: portfolio p.10. Images: TD-003.
+category: social
+order: 2
+title:
+  fa: پارس هوا
+  en: ParsHava
+kind:
+  fa: پست‌ها و استوری‌های
+  en: Posts and Stories
+body:
+  fa: |
+    در طراحی قالب پارس هوا از المان‌هایی مثل فرمول‌های شیمیایی، ساختارهای مرتبط با گاز و جلوه‌های بصری بخار استفاده شده است.
+
+    با توجه به ماهیت تخصصی و فنی این صنعت، برای جذاب‌تر شدن تصویر و ترغیب مخاطب به دیدن محتوا از تصاویر ترکیبی و تکنیک کلاژ بهره گرفته شده است.
+  en: |
+    The ParsHava template draws on chemical formulas, gas-related structures and the look of vapour.
+
+    The industry is technical and specialised, so composite images and collage make the posts more inviting and give people a reason to stop and read.
+palette: []
+images:
+  - src: ../../assets/pdf/social-parshava.jpg
+    wide: true
+    alt:
+      fa: هفت پست و استوری پارس هوا در قاب گوشی؛ کلاژهای آبی با مولکول و فرمول شیمیایی و استوری‌های مناسبتی روز سالمند و روز کودک.
+      en: Seven ParsHava posts and stories in phone frames; blue collages with molecules and formulas, plus occasion stories for Elderly Day and Children's Day.

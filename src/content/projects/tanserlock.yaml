@@ -1,0 +1,25 @@
+# Text: portfolio p.11. Images: TD-003.
+category: social
+order: 3
+title:
+  fa: تنسرلاک
+  en: Tanserlock
+kind:
+  fa: پست‌ها و استوری‌های
+  en: Posts and Stories
+body:
+  fa: |
+    تنسرلاک یک قفل هوشمند و جایگزین قفل‌های سنتی است. در قالب سوشال این پروژه از شکل‌های هندسی مثلثی استفاده شده است تا حس حرکت، پویایی و پیشرو بودن محصول را منتقل کند.
+
+    برای تمایز بصری و هماهنگی با ترندهای روز، بخشی از تصاویر با هوش مصنوعی Midjourney و منابع Freepik تهیه شده‌اند. مخاطبان برند حرفه‌ای و سازمانی‌اند؛ پس فضای طراحی جدی است و تصاویر رئال و روایت‌محور، محتوا را جذاب‌تر می‌کنند.
+  en: |
+    Tanserlock makes smart locks that replace traditional ones. The social template uses triangular geometric shapes to carry a sense of movement, energy and a product that is ahead of its field.
+
+    To stand out and stay current, some images were made with Midjourney or sourced from Freepik. The audience is professional and corporate, so the tone is serious, and realistic, story-led images keep the content engaging.
+palette: []
+images:
+  - src: ../../assets/pdf/social-tanserlock.jpg
+    wide: true
+    alt:
+      fa: هفت پست و استوری تنسرلاک در قاب گوشی با مثلث‌های زرد روی عکس‌های تیره؛ خانه‌ای روی حلقه‌ی نجات و دستگیره‌ی هوشمند.
+      en: Seven Tanserlock posts and stories in phone frames with yellow triangles over dark photos; a house on a life ring and a smart door handle.
