@@ -1,0 +1,314 @@
+---
+// Style tile / living styleguide. Phase 1 decision gate: the owner approves the
+// direction here before any real page is built. Labels are English (dev-facing);
+// specimens are bilingual. Not linked from the public navigation.
+import { Image } from 'astro:assets';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionTitle from '@/components/SectionTitle.astro';
+import TocNav from '@/components/TocNav.astro';
+import PaperLabel from '@/components/PaperLabel.astro';
+import Brace from '@/components/Brace.astro';
+import dancer from '@/assets/pdf/character-dancer.jpg';
+import daghighLight from '@/assets/pdf/daghigh-logo-light.jpg';
+import daghighDark from '@/assets/pdf/daghigh-logo-dark.jpg';
+import whisper from '@/assets/pdf/illustration-whisper-label.jpg';
+
+const swatches = [
+  { token: '--color-paper', name: 'Paper', note: 'above the horizon' },
+  { token: '--color-paper-deep', name: 'Deep paper', note: 'below the horizon' },
+  { token: '--color-paper-raised', name: 'Raised paper', note: 'cards' },
+  { token: '--color-chalk', name: 'Chalk', note: 'display type, rules' },
+  { token: '--color-label', name: 'Label', note: 'paper chips' },
+  { token: '--color-accent', name: 'Accent', note: 'decoration + interaction' },
+  { token: '--color-ink', name: 'Ink', note: 'line and text' },
+  { token: '--color-night', name: 'Night', note: 'dark gallery section' },
+];
+---
+
+<BaseLayout locale="en" title="Style tile">
+  <header class="horizon head">
+    <div class="wrap head-grid">
+      <div>
+        <PaperLabel tilt>Phase 1 · style tile</PaperLabel>
+        <p class="display" aria-hidden="true">Sketchbook</p>
+        <h1 class="heading">Aveen’s Sketchbook</h1>
+        <p class="prose">
+          Sage paper, one horizon, one charcoal line, one orange accent. Everything on this page is built
+          from <code>src/styles/tokens.css</code>.
+        </p>
+      </div>
+      <Image src={dancer} alt="Line character dancing on orange-laced shoes, holding a pen-tool nib overhead" widths={[480, 800, 1075]} sizes="(min-width: 60rem) 40vw, 90vw" />
+    </div>
+  </header>
+
+  <section class="block">
+    <div class="wrap stack">
+      <SectionTitle accent="tokens">Color</SectionTitle>
+      <ul class="swatches" role="list">
+        {
+          swatches.map((s) => (
+            <li>
+              <span class="chip" style={`background: var(${s.token})`} />
+              <PaperLabel>{s.name}</PaperLabel>
+              <code>{s.token}</code>
+              <small>{s.note}</small>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="block on-deep">
+    <div class="wrap stack">
+      <SectionTitle accent="specimens">Type</SectionTitle>
+      <div class="type-grid">
+        <div class="stack">
+          <small>Latin display · Radio Newsman</small>
+          <p class="heading">Logo and Identity</p>
+          <small>Latin body · Radio Newsman</small>
+          <p class="prose">
+            I like to build a bridge between technology and human feeling, and give small everyday things a
+            new meaning.
+          </p>
+        </div>
+        <div class="stack" lang="fa" dir="rtl">
+          <small lang="en">Persian display · A Rooznameh</small>
+          <p class="heading">آوین ایرانمنش</p>
+          <small lang="en">Persian body · A Rooznameh</small>
+          <p class="prose">
+            دوست دارم میان دنیای فناوری و احساسات انسانی پلی ایجاد کنم. برای من مهم است که به چیزهای روزمره و
+            حتی جزئیات کوچک زندگی، معنا و کاربرد تازه‌ای بدهم.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block horizon">
+    <div class="wrap stack">
+      <SectionTitle accent="of contents">Table</SectionTitle>
+      <div class="nav-grid">
+        <TocNav locale="en" />
+        <div lang="fa" dir="rtl"><TocNav locale="fa" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap stack">
+      <SectionTitle accent="parts">Small</SectionTitle>
+      <div class="parts">
+        <a class="button" href="#main">Start a project</a>
+        <a class="button" href="#main" lang="fa" dir="rtl">مسیر رشد رو شروع کنیم؟</a>
+        <a href="#main">Text link</a>
+        <PaperLabel tilt>SKETCH</PaperLabel>
+        <PaperLabel>IDEA</PaperLabel>
+        <PaperLabel>07</PaperLabel>
+        <div class="braced">
+          <Brace />
+          <ul role="list" class="typewriter" data-inview>
+            <li>Illustration</li>
+            <li>Social identity</li>
+            <li>Layout</li>
+            <li>Logo &amp; stationery</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block on-deep">
+    <div class="wrap stack">
+      <SectionTitle accent="Logo">Daghigh</SectionTitle>
+      <p class="prose">
+        Project pages stay neutral so each client palette can speak. Cards sit on the paper like prints on a
+        desk.
+      </p>
+      <div class="cards">
+        <figure class="card" data-reveal>
+          <Image src={daghighLight} alt="Daghigh logo, gold monogram on off-white" widths={[294, 588]} sizes="20rem" />
+          <figcaption>
+            <span class="dots">
+              <i style="background:#f2f5ec"></i><i style="background:#b6a86b"></i><i style="background:#0d1b1c"></i>
+            </span>
+            <span class="typewriter">Daghigh · 2023</span>
+          </figcaption>
+        </figure>
+        <figure class="card" data-reveal>
+          <Image src={daghighDark} alt="Daghigh logo, gold monogram on dark green" widths={[294, 588]} sizes="20rem" />
+          <figcaption><span class="typewriter">Reverse version</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block night">
+    <div class="wrap stack">
+      <h2 class="heading night-title">Illustrations</h2>
+      <p class="prose">The gallery may go dark so the ink, red and blue of the personal work can carry the page.</p>
+      <Image class="night-img" src={whisper} alt="Ink and wash figure illustration on a wine label" widths={[480, 800, 1234]} sizes="(min-width: 60rem) 50vw, 90vw" data-reveal />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .head {
+    padding-block: var(--space-16);
+  }
+  .head-grid {
+    display: grid;
+    gap: var(--space-8);
+    align-items: center;
+  }
+  .head .display {
+    margin-block: var(--space-4) calc(-1 * var(--space-6));
+  }
+  .head-grid > div {
+    display: grid;
+    gap: var(--space-4);
+    justify-items: start;
+  }
+  @media (min-width: 60rem) {
+    .head-grid {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+  .block {
+    padding-block: var(--space-16);
+  }
+  .stack {
+    display: grid;
+    gap: var(--space-6);
+    justify-items: start;
+  }
+  .stack > :global(*) {
+    min-inline-size: 0;
+  }
+  code {
+    font-family: var(--font-display-latin);
+    font-size: var(--text-sm);
+  }
+  small {
+    font-size: var(--text-xs);
+    color: var(--color-ink-soft);
+  }
+
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+    gap: var(--space-6);
+    inline-size: 100%;
+  }
+  .swatches li {
+    display: grid;
+    gap: var(--space-2);
+    justify-items: start;
+  }
+  .chip {
+    display: block;
+    inline-size: 100%;
+    aspect-ratio: 1;
+    border-radius: calc(4 * var(--radius-paper));
+    box-shadow: var(--shadow-paper);
+  }
+
+  .type-grid,
+  .nav-grid {
+    display: grid;
+    gap: var(--space-12);
+    inline-size: 100%;
+  }
+  @media (min-width: 60rem) {
+    .type-grid,
+    .nav-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .parts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-8);
+  }
+  .button {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--tap-min);
+    padding: var(--space-2) var(--space-6);
+    background: var(--color-accent);
+    color: var(--color-ink);
+    border: var(--stroke-line) solid var(--color-ink);
+    border-radius: var(--radius-paper);
+    box-shadow: 4px 4px 0 var(--color-ink);
+    text-decoration: none;
+    transition:
+      translate var(--dur-fast) var(--ease-out),
+      box-shadow var(--dur-fast) var(--ease-out);
+  }
+  .button:hover {
+    translate: 2px 2px;
+    box-shadow: 2px 2px 0 var(--color-ink);
+  }
+  .button:active {
+    translate: 4px 4px;
+    box-shadow: 0 0 0 var(--color-ink);
+  }
+  .braced {
+    display: flex;
+    gap: var(--space-3);
+  }
+  .braced ul {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 22rem));
+    gap: var(--space-8);
+    inline-size: 100%;
+  }
+  .card {
+    display: grid;
+    gap: var(--space-3);
+  }
+  .card :global(img) {
+    box-shadow: var(--shadow-paper);
+  }
+  .card:nth-child(odd) :global(img) {
+    rotate: var(--tilt);
+  }
+  .card figcaption {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+  }
+  .dots {
+    display: inline-flex;
+    gap: var(--space-1);
+  }
+  .dots i {
+    inline-size: 1rem;
+    block-size: 1rem;
+    border-radius: var(--radius-paper);
+    box-shadow: var(--shadow-paper);
+  }
+
+  .night {
+    background: var(--color-night);
+    color: var(--color-on-night);
+    position: relative;
+    z-index: calc(var(--z-texture) + 1); /* sits above the paper grain */
+  }
+  .night :global(.night-img) {
+    max-inline-size: min(100%, 40rem);
+  }
+  .night-title {
+    color: var(--color-accent);
+  }
+  .night :focus-visible {
+    outline-color: var(--color-on-night);
+  }
+</style>
