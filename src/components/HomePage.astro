@@ -1,23 +1,37 @@
 ---
-// Interim home page (Phase 0/1 placeholder). The real hero with the animated
-// cloche is Phase 3; the cover is a raster crop from the PDF for now (TD-001, TD-002).
+// Home: the cover (cloche reveal), a short hello, the table of contents, one card
+// per work chapter, an illustration teaser on the night band, and a pointer to
+// the about page. The cover is a raster crop from the PDF (TD-001, TD-002).
 import { Image } from 'astro:assets';
+import { getEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import TocNav from '@/components/TocNav.astro';
-import PaperLabel from '@/components/PaperLabel.astro';
+import TocNav from './TocNav.astro';
+import SectionTitle from './SectionTitle.astro';
+import { chapterIndex } from '@/data/chapters';
+import { chapterNumber, localePath, useTranslations, type Locale, type UIKey } from '@/i18n/ui';
 import cover from '@/assets/pdf/cover.jpg';
-import { localePath, useTranslations, type Locale } from '@/i18n/ui';
+import runner from '@/assets/pdf/character-runner.jpg';
+import social from '@/assets/pdf/character-social.jpg';
+import dancer from '@/assets/pdf/character-dancer.jpg';
+import detective from '@/assets/pdf/character-detective.jpg';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-const other: Locale = locale === 'fa' ? 'en' : 'fa';
+
+const work = [
+  { id: 'stationery', image: runner, alt: 'character.runner.alt', lead: 'chapter.stationery.lead', label: 'nav.stationery' },
+  { id: 'social', image: social, alt: 'character.social.alt', lead: 'chapter.social.lead', label: 'nav.social' },
+  { id: 'identity', image: dancer, alt: 'character.dancer.alt', lead: 'chapter.identity.lead', label: 'nav.identity' },
+] as const satisfies readonly { id: 'stationery' | 'social' | 'identity'; image: unknown; alt: UIKey; lead: UIKey; label: UIKey }[];
+
+const teaser = await Promise.all(['night-hoodies', 'mugs', 'tote-pool'].map((id) => getEntry('illustrations', id)));
 ---
 
 <BaseLayout locale={locale}>
-  <section class="hero">
+  <section class="hero" aria-label={t('site.title')}>
     <Image
       class="cover"
       src={cover}
@@ -30,15 +44,63 @@ const other: Locale = locale === 'fa' ? 'en' : 'fa';
   </section>
 
   <section class="intro on-deep">
+    <div class="wrap intro-grid">
+      <div class="hello">
+        <h1 class="heading">{t('site.title')}</h1>
+        <p class="tagline">{t('site.tagline')}</p>
+        <p class="lead">{t('hero.hello')}</p>
+        <p class="prose">{t('home.intro')}</p>
+        <a class="more" href={localePath('about', locale)}>{t('home.about.more')}</a>
+      </div>
+      <div class="toc-col">
+        <Image class="detective" src={detective} alt="" widths={[480, 800]} sizes="(min-width: 64rem) 30rem, 80vw" />
+        <TocNav locale={locale} />
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap chapters" aria-labelledby="chapters-title">
+    <SectionTitle id="chapters-title">{t('home.chapters')}</SectionTitle>
+    <ul role="list">
+      {
+        work.map((c) => (
+          <li data-reveal>
+            <a href={localePath(`work/${c.id}`, locale)}>
+              <Image src={c.image} alt={t(c.alt)} widths={[400, 640]} sizes="(min-width: 64rem) 24rem, 90vw" />
+              <span class="num typewriter">{chapterNumber(chapterIndex(c.id), locale)}</span>
+              <span class="title heading">{t(c.label)}</span>
+              <span class="text">{t(c.lead)}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="night" aria-labelledby="ill-title">
     <div class="wrap">
-      <h1 class="heading">{t('site.title')}</h1>
-      <p class="tagline">{t('site.tagline')}</p>
-      <p>{t('hero.hello')}</p>
-      <TocNav locale={locale} />
-      <p class="meta">
-        <PaperLabel tilt>{t('wip.note')}</PaperLabel>
-        <a href={localePath('', other)} lang={other} hreflang={other}>{t('lang.switch')}</a>
-      </p>
+      <h2 class="heading" id="ill-title">
+        <a href={localePath('illustrations', locale)}>{t('nav.illustrations')}</a>
+      </h2>
+      <p class="ill-lead">{t('chapter.illustrations.lead')}</p>
+      <ul role="list" class="teaser">
+        {
+          teaser.map(
+            (item) =>
+              item && (
+                <li data-reveal>
+                  <Image
+                    src={item.data.image}
+                    alt={item.data.alt[locale]}
+                    widths={[480, 800, 1200]}
+                    sizes="(min-width: 64rem) 40vw, 90vw"
+                  />
+                </li>
+              ),
+          )
+        }
+      </ul>
+      <a class="more" href={localePath('illustrations', locale)}>{t('home.illustrations.more')}</a>
     </div>
   </section>
 </BaseLayout>
@@ -49,30 +111,138 @@ const other: Locale = locale === 'fa' ? 'en' : 'fa';
   }
   .cover {
     inline-size: 100%;
-    max-block-size: 100dvh;
+    max-block-size: 90dvh;
     object-fit: cover;
   }
-  .intro {
-    padding-block: var(--space-16) var(--space-24);
+  @media (prefers-reduced-motion: no-preference) {
+    /* Cloche reveal: the cover opens from the horizon line outward, once. */
+    .js .cover {
+      animation: lift var(--dur-draw) var(--ease-draw) both;
+    }
   }
-  .intro .wrap {
+  @keyframes lift {
+    from {
+      clip-path: inset(48% 0 48% 0);
+      scale: 1.04;
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+      scale: 1;
+    }
+  }
+  .intro {
+    padding-block: var(--space-12) var(--space-16);
+  }
+  .intro-grid {
     display: grid;
-    gap: var(--space-6);
+    gap: var(--space-12);
+  }
+  .hello {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-4);
   }
   .tagline {
     font-size: var(--text-lg);
     color: var(--color-ink-soft);
   }
-  .meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--space-6);
-    margin-block-start: var(--space-8);
+  .lead {
+    font-size: var(--text-lg);
   }
-  .meta a {
+  .more {
     display: inline-flex;
     align-items: center;
     min-block-size: var(--tap-min);
+  }
+  .toc-col {
+    display: grid;
+    gap: var(--space-6);
+  }
+  .detective {
+    inline-size: min(30rem, 100%); /* the crop is all deep paper, same as this section */
+  }
+  .chapters {
+    display: grid;
+    gap: var(--space-8);
+    padding-block: var(--space-16);
+  }
+  .chapters ul {
+    display: grid;
+    gap: var(--space-8);
+  }
+  .chapters a {
+    display: grid;
+    gap: var(--space-2);
+    text-decoration: none;
+  }
+  .chapters :global(img) {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    inline-size: 100%;
+    background: var(--color-paper-deep);
+    border-radius: var(--radius-paper);
+    box-shadow: var(--shadow-paper);
+    transition: translate var(--dur-base) var(--ease-out);
+  }
+  .chapters a:hover :global(img),
+  .chapters a:focus-visible :global(img) {
+    translate: 0 -4px;
+  }
+  .chapters .title {
+    font-size: var(--text-xl);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.25em;
+    transition: text-decoration-color var(--dur-fast) var(--ease-out);
+  }
+  .chapters a:hover .title,
+  .chapters a:focus-visible .title {
+    text-decoration-color: var(--color-accent);
+  }
+  .num {
+    color: var(--color-ink-soft);
+    font-size: var(--text-sm);
+  }
+  .text {
+    color: var(--color-ink-soft);
+  }
+  .night {
+    padding-block: var(--space-16);
+    background: var(--color-night);
+    color: var(--color-on-night);
+  }
+  .night .wrap {
+    display: grid;
+    gap: var(--space-6);
+    justify-items: start;
+  }
+  .night h2 a {
+    text-decoration: none;
+  }
+  .night h2 {
+    color: var(--color-accent); /* the only orange title in the PDF (p.22); large display size */
+  }
+  .teaser {
+    display: grid;
+    gap: var(--space-6);
+    inline-size: 100%;
+  }
+  .teaser :global(img) {
+    inline-size: 100%;
+    border-radius: var(--radius-paper);
+  }
+  @media (min-width: 64rem) {
+    .intro-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+    .chapters ul {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .teaser {
+      grid-template-columns: 2fr 1fr 1fr;
+      align-items: end;
+    }
   }
 </style>
