@@ -1,0 +1,86 @@
+---
+// Primary navigation styled as the typewriter table of contents (portfolio p.4):
+// label, dot leader, number, grouped by an orange brace.
+import Brace from './Brace.astro';
+import { localePath, localizeDigits, useTranslations, type Locale, type UIKey } from '@/i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const items: { key: UIKey; path: string }[] = [
+  { key: 'nav.stationery', path: 'work/stationery' },
+  { key: 'nav.social', path: 'work/social' },
+  { key: 'nav.identity', path: 'work/identity' },
+  { key: 'nav.illustrations', path: 'illustrations' },
+  { key: 'nav.about', path: 'about' },
+  { key: 'nav.contact', path: 'contact' },
+];
+---
+
+<nav class="toc" aria-label={t('nav.label')} data-inview>
+  <Brace />
+  <ol role="list">
+    {
+      items.map((item, i) => (
+        <li>
+          <a href={localePath(item.path, locale)}>
+            <span class="label typewriter">{t(item.key)}</span>
+            <span class="leader" aria-hidden="true" />
+            <span class="num typewriter">{localizeDigits(String(i + 1).padStart(2, '0'), locale)}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<style>
+  .toc {
+    display: flex;
+    align-items: stretch;
+    gap: var(--space-3);
+    max-inline-size: 44rem;
+  }
+  ol {
+    flex: 1;
+    display: grid;
+  }
+  a {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    min-block-size: var(--tap-min);
+    padding-block: var(--space-2);
+    font-size: var(--text-lg);
+    text-decoration: none;
+  }
+  .leader {
+    flex: 1;
+    min-inline-size: var(--space-6);
+    border-block-end: 2px dotted currentColor;
+    opacity: 0.55;
+    translate: 0 -0.25em;
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      opacity var(--dur-fast) var(--ease-out);
+  }
+  .label {
+    transition: translate var(--dur-fast) var(--ease-out);
+  }
+  a:hover .label,
+  a:focus-visible .label {
+    translate: var(--space-2) 0;
+  }
+  :global([dir='rtl']) a:hover .label,
+  :global([dir='rtl']) a:focus-visible .label {
+    translate: calc(-1 * var(--space-2)) 0;
+  }
+  a:hover .leader,
+  a:focus-visible .leader {
+    border-color: var(--color-accent);
+    opacity: 1;
+  }
+</style>

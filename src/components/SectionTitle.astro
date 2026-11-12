@@ -1,0 +1,40 @@
+---
+// Section heading with the chalk underline used on every portfolio page.
+// `accent` = the trailing word set in chalk, e.g. "Daghigh" + "Logo".
+interface Props {
+  as?: 'h1' | 'h2' | 'h3';
+  accent?: string;
+  lang?: 'fa' | 'en';
+}
+const { as: Tag = 'h2', accent, lang } = Astro.props;
+---
+
+<Tag class="section-title heading" lang={lang} data-inview>
+  <span class="text"><slot />{accent && <span class="accent"> {accent}</span>}</span>
+  <svg class="rule" viewBox="0 0 200 8" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path data-draw pathLength="1" d="M2 4 C40 2.5 90 5.5 130 3.5 S180 4.5 198 4"></path>
+  </svg>
+</Tag>
+
+<style>
+  .section-title {
+    display: inline-grid;
+    gap: var(--space-2);
+    font-size: var(--text-xl);
+  }
+  .accent {
+    color: var(--color-chalk); /* decorative half of the title; the ink half carries meaning */
+  }
+  .rule {
+    inline-size: 100%;
+    block-size: 8px;
+    overflow: visible;
+    filter: url(#crayon);
+  }
+  .rule path {
+    fill: none;
+    stroke: var(--color-chalk);
+    stroke-width: var(--stroke-rule);
+    stroke-linecap: round;
+  }
+</style>
