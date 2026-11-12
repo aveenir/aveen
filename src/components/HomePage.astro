@@ -1,0 +1,78 @@
+---
+// Interim home page (Phase 0/1 placeholder). The real hero with the animated
+// cloche is Phase 3; the cover is a raster crop from the PDF for now (TD-001, TD-002).
+import { Image } from 'astro:assets';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TocNav from '@/components/TocNav.astro';
+import PaperLabel from '@/components/PaperLabel.astro';
+import cover from '@/assets/pdf/cover.jpg';
+import { localePath, useTranslations, type Locale } from '@/i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const other: Locale = locale === 'fa' ? 'en' : 'fa';
+---
+
+<BaseLayout locale={locale}>
+  <section class="hero">
+    <Image
+      class="cover"
+      src={cover}
+      alt={t('hero.cover.alt')}
+      widths={[640, 960, 1440, 1920]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </section>
+
+  <section class="intro on-deep">
+    <div class="wrap">
+      <h1 class="heading">{t('site.title')}</h1>
+      <p class="tagline">{t('site.tagline')}</p>
+      <p>{t('hero.hello')}</p>
+      <TocNav locale={locale} />
+      <p class="meta">
+        <PaperLabel tilt>{t('wip.note')}</PaperLabel>
+        <a href={localePath('', other)} lang={other} hreflang={other}>{t('lang.switch')}</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: var(--color-paper-deep);
+  }
+  .cover {
+    inline-size: 100%;
+    max-block-size: 100dvh;
+    object-fit: cover;
+  }
+  .intro {
+    padding-block: var(--space-16) var(--space-24);
+  }
+  .intro .wrap {
+    display: grid;
+    gap: var(--space-6);
+  }
+  .tagline {
+    font-size: var(--text-lg);
+    color: var(--color-ink-soft);
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-6);
+    margin-block-start: var(--space-8);
+  }
+  .meta a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--tap-min);
+  }
+</style>
